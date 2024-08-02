@@ -11,14 +11,14 @@ config_file_path = "../.env"
 
 class RedirectUrl(MiddlewareMixin):
     def process_request(self, request):
-        try:    
+        try:
             domain = request.get_full_path()
             sort_url = domain.split('/')
-            if len(sort_url) > 1 and sort_url[1] not in ["page", "admin"]:
+            
+            if len(sort_url) > 1 and sort_url[1] not in ["short"]:
                 base_url = config("WEBSITE_URL")
                 url = base_url + "/" + sort_url[1]
                 link = RedirectToUrl(url)
-                print(link)
                 return HttpResponseRedirect(link)
         except Exception as e:
             print(f"An error occurred: {e}")

@@ -3,8 +3,8 @@ from django.shortcuts import render
 from decouple import config
 
 from django.contrib.auth import authenticate, login, logout
-from rest_framework.decorators import api_view, permission_classes
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_protect
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework.authtoken.models import Token
@@ -29,19 +29,20 @@ def convert_url(request):
                 return Response({"message": "Need to pass URL"}, status=400)
 
             if user.is_authenticated:
-                author = User.objects.filter(username=user.username).first()
-                existing_url = ShortenUrl.objects.filter(longurl=longurl, author=author).first()
+                author = User.objects.filter(username=user).first()
             else:
                 author = None
-                existing_url = ShortenUrl.objects.filter(longurl=longurl).first()
+                
+            existing_url = ShortenUrl.objects.filter(longurl=longurl).first()
 
             if existing_url:
                 serializer = UrlSerializer(existing_url)
                 return Response(serializer.data, status=200)
 
             # If URL is not found, create a new shortened URL
-            url_parts = longurl.split('/')
-            url_key = url_parts[-1] if url_parts else longurl
+            cleaned_url = longurl.replace('?', '').replace('=', '').replace('_', '').replace('-', '')
+            url_parts = cleaned_url.split('/')
+            url_key = url_parts[-1] + author.username if url_parts and user.is_authenticated else url_parts
             short = hashing(url_key)
             short_url = config("WEBSITE_URL") + '/' + short
 

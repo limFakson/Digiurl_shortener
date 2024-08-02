@@ -19,4 +19,3 @@ class UrlSerializer(serializers.ModelSerializer):
             'longurl',
             'shorturl'
         ]
-        read_only_fields = ["longurl", "shorturl", "author"]
