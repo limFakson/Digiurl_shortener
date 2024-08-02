@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+}
+
+.drop {
+    display: none;
+    top: 2.5rem;
+    left: 0.7rem;
+    box-shadow: 0.4px 1px 1px 0px;
+}
+
+.btns {
+    box-shadow: 1px 2px 1px 1.2px rgba(0, 150, 255, 0.32);
+}
+
+.drops:hover {
+    background-color: #efefef;
+}
+
+.url-bar input {
+    padding-left: 30px;
+    border-radius: 20px 0 0 20px;
+    height: 100%;
+    width: 85%;
+    border: none;
+    outline: none;
+}
+
+.url-bar button {
+    border-radius: 0 20px 20px 0;
+}
+
+.url-bar input:focus {
+    border: none;
+    outline: none;
+}
+
+.feature {
+    width: 20%;
+    margin: 1rem;
+}
+
+@media (max-width:740px) {
+    .feature {
+        width: 40%;
+    }
+}
+
+.feature .box div {
+    justify-self: center;
+    align-self: center;
+}

@@ -42,7 +42,7 @@ def convert_url(request):
             # If URL is not found, create a new shortened URL
             cleaned_url = longurl.replace('?', '').replace('=', '').replace('_', '').replace('-', '')
             url_parts = cleaned_url.split('/')
-            url_key = url_parts[-1] + author.username if url_parts and user.is_authenticated else url_parts
+            url_key = url_parts[-1] + author.username if url_parts and user.is_authenticated else url_parts[-1]
             short = hashing(url_key)
             short_url = config("WEBSITE_URL") + '/' + short
 
