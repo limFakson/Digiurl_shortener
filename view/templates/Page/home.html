@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <section class="urlbox flex flex-col gap-2 justify-center items-center">
-  <div class="w-full h-[100px] text-center grid">
-    <h2 class="self-center text-lg font-light">
+  <div class="w-full h-[100px] text-center grid mt-14 mb-8">
+    <h2 class="self-center text-2xl sm:text-4xl font-light">
       Rendor url shortener your link shortener
     </h2>
   </div>
@@ -14,7 +14,7 @@
         placeholder="Paste your long url here..."
       />
       <button
-        class="inline-block md:w-[15%] w-[6rem] h-full bg-[#0096FF] text-white text-lg font-medium md:font-semibold"
+        class="inline-block md:w-[15%] w-[6rem] h-full bg-[#0096FF] text-white text-lg font-normal md:font-medium"
         id="convert"
         onclick="convert()"
       >
@@ -30,6 +30,9 @@
 </section>
 <section class="features">
   <div class="space h-[100px]"></div>
+  <div class="text-center text-3xl sm:text-4xl font-light py-8">
+    <h3>Rendor edge features</h3>
+  </div>
   <div class="box flex flex-wrap justify-center items-center">
     <div class="feature feature-1">
       <div class="box grid">
@@ -39,8 +42,8 @@
           <i class="self-center fa-solid fa-link"></i>
         </div>
         <div class="text text-center">
-          <strong><h4>Managing links</h4></strong>
-          <p class="text">Create, protect, view and delete your links.</p>
+          <h4 class="font-medium text-lg p-2 sm:text-xl">Managing links</h4>
+          <p class="font-light text-lg sm:text-base" class="text">Create, protect, view and delete your links.</p>
         </div>
       </div>
     </div>
@@ -51,8 +54,9 @@
         >
           <i class="self-center fa-regular fa-heart"></i>
         </div>
-        <div class="text">
-          <strong><h4>Open Source</h4></strong>
+        <div class="text text-center">
+          <h4 class="font-medium text-lg p-2 sm:text-xl">Open Source</h4>
+          <p class="font-light text-lg sm:text-base">Completely open source and free. You can host it on your own server.</p>
         </div>
       </div>
     </div>
@@ -63,8 +67,9 @@
         >
           <i class="self-center fa-regular fa-pen-to-square"></i>
         </div>
-        <div class="text">
-          <strong><h4>Custom Domain</h4></strong>
+        <div class="text text-center">
+          <h4 class="font-medium text-lg p-2 sm:text-xl">Custom Links</h4>
+          <p class="font-light text-lg sm:text-base">Use custom name for your links. Add or remove them for free.</p>
         </div>
       </div>
     </div>
@@ -75,8 +80,9 @@
         >
           <i class="self-center fa-solid fa-bolt"></i>
         </div>
-        <div class="text">
-          <strong><h4>API</h4></strong>
+        <div class="text text-center">
+          <h4 class="font-medium text-lg p-2 sm:text-xl">API</h4>
+          <p class="font-light text-lg sm:text-base">Use the provided API to create, delete, and get URLs from anywhere.</p>
         </div>
       </div>
     </div>

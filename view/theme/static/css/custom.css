@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: Inter;
 }
 
 .drop {
@@ -10,7 +11,7 @@
 }
 
 .btns {
-    box-shadow: 1px 2px 1px 1.2px rgba(0, 150, 255, 0.32);
+    box-shadow: 0.4px 2px 1px 1.2px rgba(0, 150, 255, 0.32);
 }
 
 .drops:hover {
@@ -36,13 +37,22 @@
 }
 
 .feature {
-    width: 20%;
-    margin: 1rem;
+    width: 22%;
+    margin: 1rem 10px;
 }
 
 @media (max-width:740px) {
     .feature {
         width: 40%;
+        height: 10rem;
+    }
+}
+
+@media (max-width:480px) {
+    .feature {
+        width: 80%;
+        height: 12rem;
+        margin: 10px;
     }
 }
 

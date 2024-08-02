@@ -813,6 +813,18 @@ select {
   margin-right: auto;
 }
 
+.mt-16 {
+  margin-top: 4rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
 .block {
   display: block;
 }
@@ -849,6 +861,14 @@ select {
   height: 100vh;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -883,6 +903,22 @@ select {
 
 .w-\[18rem\] {
   width: 18rem;
+}
+
+.w-7 {
+  width: 1.75rem;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.w-\[11rem\] {
+  width: 11rem;
+}
+
+.w-\[11\.5rem\] {
+  width: 11.5rem;
 }
 
 .max-w-full {
@@ -1013,6 +1049,11 @@ select {
   padding-right: 3.5rem;
 }
 
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -1023,6 +1064,26 @@ select {
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
+}
+
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
+.pt-9 {
+  padding-top: 2.25rem;
 }
 
 .text-center {
@@ -1063,6 +1124,21 @@ select {
   line-height: 1.25rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1077,6 +1153,10 @@ select {
 
 .font-normal {
   font-weight: 400;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .leading-normal {
@@ -1143,15 +1223,51 @@ select {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
+
+  .max-sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
 
 @media (min-width: 640px) {
+  .sm\:h-8 {
+    height: 2rem;
+  }
+
   .sm\:w-\[18rem\] {
     width: 18rem;
   }
 
+  .sm\:w-\[20rem\] {
+    width: 20rem;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+
   .sm\:items-end {
     align-items: flex-end;
+  }
+
+  .sm\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .sm\:font-semibold {
+    font-weight: 600;
   }
 }
 
@@ -1190,6 +1306,10 @@ select {
   .md\:font-semibold {
     font-weight: 600;
   }
+
+  .md\:font-medium {
+    font-weight: 500;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1199,6 +1319,10 @@ select {
 
   .lg\:w-\[20rem\] {
     width: 20rem;
+  }
+
+  .lg\:w-\[23rem\] {
+    width: 23rem;
   }
 
   .lg\:pr-6 {

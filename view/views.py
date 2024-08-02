@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 
 from base.serializer import UserSerializer
+from base.models import ShortenUrl
 
 # Create your views here.
 def home(request):
@@ -17,6 +18,7 @@ def home(request):
         return render(request, 'Page/home.html', {user:user})
     return render(request, 'Page/home.html')
 
+
 def login(request):
     try:
         user = request.user
@@ -25,6 +27,16 @@ def login(request):
         user =None
     if request.method == "GET":
         return render(request, 'Auth/login.html')
-    elif request.method == "POST":
-        seriliazer = UserSerializer(data=request.data)
+
+
+def profile(request):
+    try:
+        user = request.user
+    except:
+        return redirect('/short/view/auth/login')
+    
+    user = User.objects.get(username=user)
+    links = ShortenUrl.objects.get(user=user)
+    
+    return render(request, 'Page/profile.html', {user:user, links:links})
         

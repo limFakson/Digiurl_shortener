@@ -8,6 +8,9 @@
     <!-- CSRF token meta tag -->
     <meta name="csrf-token" content='{% csrf_token %}' />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <script
       src="https://kit.fontawesome.com/43b5f69107.js"
       crossorigin="anonymous"
@@ -22,13 +25,13 @@
   </head>
   <body class="bg-[#F4F2F1]">
     <header class="w-full">
-      <nav class="max-sm:p-6 pb-6 px-14 pt-8 flex justify-between sm:items-end items-center">
-        <div class="flex lg:w-[20rem] sm:w-[18rem] w-[8rem] justify-between items-end">
-          <h1 class="text-xl font-bold max-sm:text-lg text-[#0f0f0f]">
+      <nav class="max-sm:p-6 pb-6 px-14 pt-9 flex justify-between sm:items-end items-center">
+        <div class="flex lg:w-[23rem] sm:w-[20rem] w-[11.5rem] justify-between items-end">
+          <h1 class="text-2xl font-medium sm:font-semibold max-sm:text-lg text-[#0f0f0f]">
             Rendor Url Shortener
           </h1>
           <ul
-            class="gap-x-2 font-normal text-base max-sm:hidden text-[#0f0f0f]"
+            class="gap-x-2 font-normal text-lg max-sm:hidden text-[#0f0f0f]"
           >
             <li class="inline-block">Github</li>
             <li class="inline-block"></li>
@@ -39,19 +42,19 @@
           <div
             class="account lg:pr-6 pr-2 flex md:gap-x-4 gap-2 justify-start items-center relative"
           >
-            <div class="icon w-10 h-8">
+            <div class="icon w-8 h-6 sm:w-10 sm:h-8">
               <img
                 src="{% static 'image/3135715-removebg-preview.png' %}"
                 alt=""
                 class="max-w-full object-fill"
               />
             </div>
-            <div class="user flex justify-end gap-2 items-center">
-              <h4 class="text-xl font-medium">
+            <div class="user flex justify-end gap-2 items-center pt-2">
+              <h4 class="text-base font-medium">
                 {{ user.username|capfirst }}
               </h4>
               <div
-                class=" text-[#0f0f0f] font-normal text-sm"
+                class=" text-[#0f0f0f] font-light text-xs"
                 onclick="drop()"
               >
                 <i class="fa-solid fa-chevron-down"></i>
