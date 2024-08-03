@@ -101,3 +101,7 @@
     font-size: 14px;
     font-weight: 300;
 }
+
+.links-container a:hover {
+    text-decoration: underline;
+}

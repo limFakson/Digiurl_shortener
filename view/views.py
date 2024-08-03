@@ -56,9 +56,9 @@ def profile(request):
         
     if user.is_authenticated:
         user = User.objects.get(username=user)
-        links = ShortenUrl.objects.filter(author=user)
+        url = user.url.all()
         
-        return render(request, 'Page/profile.html', {user:user, links:links})
+        return render(request, 'Page/profile.html', {user:user, url:url})
     else:
         return redirect('/short/view/auth/login')
         
