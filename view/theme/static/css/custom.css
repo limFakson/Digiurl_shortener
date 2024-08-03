@@ -5,13 +5,40 @@
 
 .drop {
     display: none;
-    top: 2.5rem;
-    left: 0.7rem;
-    box-shadow: 0.4px 1px 1px 0px;
+    top: 0rem;
+    left: 3rem;
+    box-shadow: 0.4px 1px 1px 0px #000;
+    transition: 0.2s;
+    transition-behavior: allow-discrete;
+    transition-delay: 0.2s;
+    transition-timing-function: ease-in-out;
+    transform: translateY(-20px);
+}
+
+#icon {
+    transition: ease-in-out 0.5s;
+}
+
+.eye {
+    transition: ease-in-out .2s;
+}
+
+.trigger-hide:checked~.hide {
+    display: none !important;
+}
+
+.trigger-reveal:checked~.reveal {
+    display: none !important;
 }
 
 .btns {
     box-shadow: 0.4px 2px 1px 1.2px rgba(0, 150, 255, 0.32);
+}
+
+@media(max-width: 640px) {
+    .reg-btns {
+        display: none;
+    }
 }
 
 .drops:hover {
@@ -20,16 +47,17 @@
 
 .url-bar input {
     padding-left: 30px;
-    border-radius: 20px 0 0 20px;
+    /* border-radius: 20px 0 0 20px; */
     height: 100%;
     width: 85%;
     border: none;
     outline: none;
 }
 
-.url-bar button {
+
+/* .url-bar button {
     border-radius: 0 20px 20px 0;
-}
+} */
 
 .url-bar input:focus {
     border: none;
@@ -59,4 +87,8 @@
 .feature .box div {
     justify-self: center;
     align-self: center;
+}
+
+.toper {
+    background-color: rgb(43, 46, 59);
 }

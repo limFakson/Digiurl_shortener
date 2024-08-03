@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% block auth %}
+<style>
+    @media (max-width: 640px) {
+        .log-btns {
+            display: none;
+        }
+    }
+    
+    .reg-btns {
+        display: inline-block;
+    }
+</style>
+<div class="space h-[50px] sm:h-[70px] lg:h-[40px]"></div>
+<section class="flex w-full items-start justify-center sm:pb-12 pb-2">
+      <div class="ml-[0px] grid">
+            <span class="text-center text-sm sm:text-base font-light max-sm:mx-10 max-lg:mx-12 max-sm:pb-2 max-lg:pb-8">
+                  <strong>Are you a brand?</strong>
+                  Explore how to use shortened URLs for your links
+            </span>
+            <div class="text justify-self-center text-center w-[22rem]">
+                  <h4 class="text-xl font-normal pb-2 pt-4">
+                        Create Account
+                  </h4>
+                  <h2 class="text-6xl font-normal">
+                        Register
+                  </h2>
+            </div>
+            <div class="box grid m-1 mt-5 sm:w-[550px] w-[full] max-sm:px-8">
+                  <form class="">
+                        <input
+                              type="text"
+                              name="username"
+                              class="text w-full my-3 h-14 pl-4 bg-transparent border"
+                              placeholder="Username"
+                              required
+                        >
+                        <input
+                              type="email"
+                              name="email"
+                              class="text w-full my-3 h-14 pl-4 bg-transparent border"
+                              placeholder="Email address"
+                              required
+                        >
+                        <div class="password border border-solid border-[#6b7280] h-14 input custom justify-self-center flex justify-center items-center pr-4 my-3">
+                              <input
+                                    class="w-full h-full pl-6 pr-2 outline-none bg-transparent border-none"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    id="password"
+                                    required
+                              >
+                              <input
+                                    type="checkbox"
+                                    name="trigger"
+                                    class="trigger-hide relative hidden"
+                                    id="hide"
+                              >
+                              <i class="cursor-pointer fa-solid fa-eye-slash hide eye" onclick="hide()"></i>
+                              <input
+                                    type="checkbox"
+                                    name="trigger"
+                                    class="trigger-reveal relative hidden"
+                                    id="reveal"
+                                    checked
+                              >
+                              <i class="cursor-pointer fa-solid fa-eye reveal eye" onclick="reveal()"></i>
+                        </div>
+                        <span id="error"></span>
+                        <div class="submit">
+                              <button id="reg-submit-btn" type="submit" class="submit-btn w-full mt-4 h-12 bg-[#0096FF] text-[#F4F2F1] text-xl font-medium">Register</button>
+                        </div>
+                  </form>
+            </div>
+      </div>
+</section>
+{% endblock %}

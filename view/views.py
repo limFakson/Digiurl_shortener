@@ -11,7 +11,7 @@ def home(request):
     try:
         user = request.user
     except:
-        user = None
+        user =None
         
     if user.is_authenticated:
         user = User.objects.get(username=user)
@@ -22,21 +22,43 @@ def home(request):
 def login(request):
     try:
         user = request.user
-        return redirect('/short/view/home')
     except:
         user =None
+        
+    if user.is_authenticated:
+        return redirect('/short/view/home')
     if request.method == "GET":
         return render(request, 'Auth/login.html')
+    
+    
+def register(request):
+    try:
+        user = request.user
+    except:
+        user =None
+        
+    if user.is_authenticated:
+        return redirect('/short/view/home')
+    if request.method == "GET":
+        return render(request, 'Auth/register.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/short/view/home')
 
 
 def profile(request):
     try:
         user = request.user
     except:
+        user =None
+        
+    if user.is_authenticated:
+        user = User.objects.get(username=user)
+        links = ShortenUrl.objects.get(user=user)
+        
+        return render(request, 'Page/profile.html', {user:user, links:links})
+    else:
         return redirect('/short/view/auth/login')
-    
-    user = User.objects.get(username=user)
-    links = ShortenUrl.objects.get(user=user)
-    
-    return render(request, 'Page/profile.html', {user:user, links:links})
         

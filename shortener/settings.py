@@ -164,9 +164,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 TAILWIND_APP_NAME = 'view.theme'
-print(TAILWIND_APP_NAME)
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/short/view/home'
 
 STATIC_URL = 'view.theme/static/'
 STATIC_ROOT = BASE_DIR / 'view.theme/static'
