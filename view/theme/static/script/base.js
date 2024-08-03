@@ -147,8 +147,13 @@ $(document).on('click', '#login-submit-btn', function(e) {
             password: password
         },
 
-        success: function(data) {
+        success: function(response) {
             location.href = "/short/view/home"
+        },
+        error: function(response) {
+            if (response.responseJSON.message) {
+                $('#error').text(response.responseJSON.message).css('color', 'red')
+            }
         }
     })
 })
@@ -167,9 +172,15 @@ $(document).on('click', '#reg-submit-btn', function(e) {
             password: password
         },
 
-        success: function(data) {
+        success: function(response) {
             console.log(data)
             location.href = "/short/view/home"
+        },
+        error: function(response) {
+            if (response.responseJSON.message) {
+                $('#error').text(response.responseJSON.message)
+
+            }
         }
     })
 })

@@ -1,38 +1,40 @@
 {% load static %} {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
-      <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <!-- CSRF token meta tag -->
-            <meta name="csrf-token" content='{% csrf_token %}'>
-            <title>Document</title>
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-            <script src="https://kit.fontawesome.com/43b5f69107.js" crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-            {% tailwind_css %}
-            <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-      </head>
-      <body class="bg-[#F4F2F1]">
-            <header class="w-full">
-                  <nav class="max-sm:p-6 pb-6 px-14 pt-9 flex justify-between sm:items-end items-center">
-                        <div class="flex lg:w-[23rem] sm:w-[20rem] w-[11.5rem] justify-between items-end">
-                              <h1 class="logo cursor-pointer text-2xl font-medium sm:font-semibold max-sm:text-lg text-[#0f0f0f]">
-                                    Rendor Url Shortener
-                              </h1>
-                              <ul class="gap-x-2 font-normal text-lg max-sm:hidden text-[#0f0f0f]">
-                                    <li class="inline-block">Github</li>
-                                    <li class="inline-block"></li>
-                              </ul>
-                        </div>
-                        {% if user.is_authenticated %}
-                        <button class="cursor-pointer">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSRF token meta tag -->
+    <meta name="csrf-token" content='{% csrf_token %}'>
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/43b5f69107.js" crossorigin="anonymous"></script>
+    {% tailwind_css %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-[#F4F2F1]">
+    <header class="w-full">
+        <nav class="max-sm:p-6 pb-6 px-14 pt-9 flex justify-between sm:items-end items-center">
+            <div class="flex lg:w-[23rem] sm:w-[20rem] w-[11.5rem] justify-between items-end">
+                <h1 class="logo cursor-pointer text-2xl font-medium sm:font-semibold max-sm:text-lg text-[#0f0f0f]">
+                    Rendor Url Shortener
+                </h1>
+                <ul class="gap-x-2 font-normal text-lg max-sm:hidden text-[#0f0f0f]">
+                    <li class="inline-block">Github</li>
+                    <li class="inline-block"></li>
+                </ul>
+            </div>
+            {% if user.is_authenticated %}
+            <button class="cursor-pointer">
                               <div class="account lg:pr-6 pr-2 flex md:gap-x-4 gap-2 justify-start items-center relative">
                                     <div class="icon w-8 h-6 sm:w-10 sm:h-8">
-                                          <img src="{% static 'image/3135715-removebg-preview.png' %}" alt="" class="max-w-full object-fill">
+                                          <img src="{% static 'image/3135715-removebg-preview.png' %}" alt="prof-pics" class="max-w-full object-fill">
                                     </div>
                                     <div class="user flex justify-end gap-2 items-center pt-2">
                                           <h4 class="text-base font-medium">
@@ -51,31 +53,30 @@
                                           </ul>
                                     </div>
                               </div>
-                        </button>
-                        {% else %}
-                        <div class="buttons lg:pr-6 pr-2">
-                              <a href="{% url 'view.login' %}" class="w-full h-full">
-                                    <button class="log-btns btns bg-[#0096FF] text-white font-medium rounded-3xl md:py-2 py-1 px-4 md:px-6 mx-2 inline-block">
+                        </button> {% else %}
+            <div class="buttons lg:pr-6 pr-2">
+                <a href="{% url 'view.login' %}" class="w-full h-full">
+                    <button class="log-btns btns bg-[#0096FF] text-white font-medium rounded-3xl md:py-2 py-1 px-4 md:px-6 mx-2 inline-block">
                                           <span>Login</span>
                                     </button>
-                              </a>
-                              <a href="{% url 'view.register' %}">
-                                    <button class="reg-btns btns bg-[#0096FF] text-white font-medium rounded-3xl md:py-2 py-1 px-4 md:px-6 mx-2 inline-block">
+                </a>
+                <a href="{% url 'view.register' %}">
+                    <button class="reg-btns btns bg-[#0096FF] text-white font-medium rounded-3xl md:py-2 py-1 px-4 md:px-6 mx-2 inline-block">
                                           <span>Register</span>
                                     </button>
-                              </a>
-                        </div>
-                        {% endif %}
-                  </nav>
-            </header>
-            <main>
-                  {% block auth %} {% endblock %} {% block content %} {% endblock %}
-            </main>
-            <footer>
-                  <section>
-                        <div class="space h-[80px]"></div>
-                        <div class="info text-center pb-5">
-                              <span class="flex gap-x-[2px] justify-center items-center text-xs sm:text-sm font-light">
+                </a>
+            </div>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block auth %} {% endblock %} {% block content %} {% endblock %} {% block profile %} {% endblock %}
+    </main>
+    <footer class="block w-full">
+        <section>
+            <div class="space h-[80px]"></div>
+            <div class="info text-center pb-5">
+                <span class="flex gap-x-[2px] justify-center items-center text-xs sm:text-sm font-light">
                                     <p>
                                           Made with love by
                                           <a href="" class="text-[#0096ff]">LimFakson</a>
@@ -89,9 +90,10 @@
                                           <a href="" class="text-[#0096ff]">Contact us</a>
                                     </p>
                               </span>
-                        </div>
-                  </section>
-            </footer>
-            <script src="{% static 'script/base.js' %}"></script>
-      </body>
+            </div>
+        </section>
+    </footer>
+    <script src="{% static 'script/base.js' %}"></script>
+</body>
+
 </html>

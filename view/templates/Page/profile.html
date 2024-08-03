@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% load static %} {% block profile %}
+<section class="flex flex-col">
+    <div class="space h-[20px]"></div>
+    <div class="dashboard m-6 relative">
+        <div class="user-profile max-md:w-full w-[35%] lg:w-[25%] float-left relative">
+            <div class="profile-avater">
+                <img src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}" alt="prof-pics" class="w-full h-auto align-middle max-w-full block object-fill">
+                <div class="edit-profile mt-5">
+                    <a href="" class="text-center align-middle border-[#2B2E3B] border border-solid w-full inline-block bg-[#f4f2f1] py-[6px] px-3">Edit profile</a>
+                </div>
+            </div>
+            <div class="profile-title mt-5">
+                <h3 class="text-2xl font-medium text-black">{{ user.username|capfirst }}</h3>
+                <p class="text-sm font-light">{{ user.email}}</p>
+            </div>
+            <div class="profile-bio mt-5">
+                <p class="text-base font-light">........</p>
+            </div>
+        </div>
+        <div class="float-left relative max-md:w-full w-[65%] lg:w-[75%] mt-4">
+            <div class="activity w-full pl-8 mr-[-10px]">
+                <div class="link-card relative bg-white w-full p-10 border border-[#2b2e3b3d] border-solid">
+                    <div class="link-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

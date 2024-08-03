@@ -56,7 +56,7 @@ def profile(request):
         
     if user.is_authenticated:
         user = User.objects.get(username=user)
-        links = ShortenUrl.objects.get(user=user)
+        links = ShortenUrl.objects.filter(author=user)
         
         return render(request, 'Page/profile.html', {user:user, links:links})
     else:
