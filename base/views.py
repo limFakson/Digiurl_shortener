@@ -3,7 +3,8 @@ from django.shortcuts import render
 from decouple import config
 
 from django.contrib.auth import authenticate, login, logout
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.views.decorators.csrf import csrf_protect
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
@@ -22,44 +23,39 @@ config_file_path = "../.env"
 def convert_url(request):
     if request.method == 'POST':
         try:
-            user = request.user
-            longurl = request.data.get('url')
+            user = request.user  
+        except:
+            return Response({"message": "not working"}, status=500)
+        
+        longurl = request.data.get('url')
 
-            if not longurl:
-                return Response({"message": "Need to pass URL"}, status=400)
+        if not longurl:
+            return Response({"message": "Need to pass URL"}, status=400)
 
-            if user.is_authenticated:
-                author = User.objects.filter(username=user).first()
-            else:
-                author = None
-                
-            existing_url = ShortenUrl.objects.filter(longurl=longurl).first()
+            
+        existing_url = ShortenUrl.objects.filter(longurl=longurl).first()
+        
+        if existing_url:
+            serializer = UrlSerializer(existing_url)
+            return Response(serializer.data, status=200)
 
-            if existing_url:
-                serializer = UrlSerializer(existing_url)
-                return Response(serializer.data, status=200)
-
-            # If URL is not found, create a new shortened URL
-            cleaned_url = longurl.replace('?', '').replace('=', '').replace('_', '').replace('-', '')
-            url_parts = cleaned_url.split('/')
-            url_key = url_parts[-1] + author.username if url_parts and user.is_authenticated else url_parts[-1]
-            short = hashing(url_key)
-            short_url = config("WEBSITE_URL") + '/' + short
-
-            data = {
-                "longurl": longurl,
-                "shorturl": short_url,
-                "author": author.id if author else None
-            }
-            serializer = UrlSerializer(data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=201)
-            return Response(serializer.errors, status=400)
-
-        except Exception as e:
-            return Response({"message": str(e)}, status=500)
-    return Response()    
+        # If URL is not found, create a new shortened URL
+        cleaned_url = longurl.replace('?', '').replace('=', '').replace('_', '').replace('-', '')
+        url_parts = cleaned_url.split('/')
+        url_key = url_parts[-1] + user.username if url_parts and user.is_authenticated else url_parts[-1]
+        short = hashing(url_key)
+        short_url = config("WEBSITE_URL") + '/' + short
+        data = {
+            "longurl": longurl,
+            "shorturl": short_url,
+            "author": user.id
+        }
+        serializer = UrlSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+    return Response()  
 
 # Registration Authetication view
 @csrf_protect
@@ -101,6 +97,7 @@ def userregistration(request):
 # Login Authentication View
 @csrf_protect
 @api_view(["POST"])
+@permission_classes([AllowAny])
 def userLogin(request):
     credential = request.data.get("credential")
     password = request.data.get("password")
@@ -121,7 +118,6 @@ def userLogin(request):
     if user is not None:
         token, created = Token.objects.get_or_create(user=user)
         login(request, user)
-        username = user.username
         return Response(
         {"message": "Login successful", "token": token.key, "user_id": user.id},
         status=status.HTTP_200_OK)

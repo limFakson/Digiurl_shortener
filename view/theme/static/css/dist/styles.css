@@ -1112,6 +1112,10 @@ select {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
+.border-\[\#2b2e3b48\] {
+  border-color: #2b2e3b48;
+}
+
 .bg-\[\#0096FF\] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 150 255 / var(--tw-bg-opacity));
@@ -1406,6 +1410,11 @@ select {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-\[\#f4f2f1\] {
+  --tw-text-opacity: 1;
+  color: rgb(244 242 241 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1538,6 +1547,10 @@ select {
 
   .sm\:gap-4 {
     gap: 1rem;
+  }
+
+  .sm\:border-\[2px\] {
+    border-width: 2px;
   }
 
   .sm\:px-4 {

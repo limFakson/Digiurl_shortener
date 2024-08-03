@@ -3,7 +3,7 @@
   <div class="space h-[20px]"></div>
   <div class="dashboard m-6 relative">
     <div
-      class="user-profile max-md:w-full w-[35%] lg:w-[25%] float-left relative"
+      class="user-profile max-md:w-full w-[35%] lg:w-[25%] float-left relative pl-4"
     >
       <div class="profile-avater">
         <img
@@ -36,8 +36,10 @@
         >Your Links</span
       >
       <div class="activity w-full sm:px-4 md:pl-8 md:mr-[-10px] mt-4">
+        {% for link in url %}
         <div
-          class="link-card bg-white relative w-full px-4 sm:px-8 py-5 border border-[#2b2e3b3d] border-solid"
+          class="link-card my-4 bg-white relative w-full px-4 sm:px-8 py-5 border border-[#2b2e3b3d] border-solid"
+          data-link="{{ link }}"
         >
           <div class="link-box flex flex-col sm:flex-row">
             <div class="link-information sm:w-[75%] flex flex-row gap-6">
@@ -51,25 +53,25 @@
                 <div class="links flex flex-col justify-between">
                   <div class="links-container">
                     <a
-                      href="http://localhost:8000/Fm9kB"
+                      href="{{ link.shorturl }}"
                       class="short-url block py-[3px] text-xs sm:text-sm font-light text-[#0096ff]"
                     >
-                      localhost:8000/Fm9kB
+                      {{ link.shorturl }}
                       <i
                         class="fa-solid fa-copy pl-4 text-xs sm:text-sm copy"
                       ></i>
                     </a>
                     <a
-                      href="https://demo.gettlb.com/login"
+                      href="{{ link.longurl }}"
                       class="long-url block py-[3px] text-sm sm:text-base font-light"
                     >
-                      demo.gettlb.com/login
+                      {{ link.longurl }}
                     </a>
                   </div>
                   <div class="links-info mt-9">
                     <span class="text-sm font-light">
                       <i class="fa-regular fa-calendar-days pr-1"></i>
-                      Aug 08, 2024
+                      {{ link.created_at }}
                     </span>
                   </div>
                 </div>
@@ -80,18 +82,19 @@
               class="link-button pr-6 max-sm:mt-6 sm:w-[25%] relative flex flex-row gap-3 items-start justify-end"
             >
               <div
-                class="copy-btn border-[2px] px-3 py-1 border-solid text-base font-normal cursor-pointer"
+                class="copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
               >
                 <i class="fa-solid fa-copy pr-[2px]"></i> copy
               </div>
               <div
-                class="copy-btn border-[2px] px-3 py-1 border-solid text-base font-normal cursor-pointer"
+                class="copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
               >
                 <i class="fa-solid fa-ellipsis-vertical"></i>
               </div>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
     </div>
   </div>

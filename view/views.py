@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 
-from base.serializer import UserSerializer
+from base.serializer import UserSerializer, UrlSerializer
 from base.models import ShortenUrl
 
 # Create your views here.
@@ -44,6 +45,8 @@ def register(request):
 
 
 def logout_view(request):
+    user = request.user
+    token = Token.objects.filter(user=user).delete()
     logout(request)
     return redirect('/short/view/home')
 
@@ -53,12 +56,12 @@ def profile(request):
         user = request.user
     except:
         user =None
-        
+    
     if user.is_authenticated:
         user = User.objects.get(username=user)
-        url = user.url.all()
+        url = ShortenUrl.objects.filter(author=user.id)
         
-        return render(request, 'Page/profile.html', {user:user, url:url})
+        return render(request, 'Page/profile.html', {"user":user, "url":url})
     else:
         return redirect('/short/view/auth/login')
         

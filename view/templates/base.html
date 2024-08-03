@@ -48,7 +48,7 @@
                                                       <li class="drops py-1 px-4">profile</li>
                                                 </a>
                                                 <a href="{% url 'view.logout' %}">
-                                                      <li class="drops py-1 px-4">logout</li>
+                                                      <li class="drops py-1 px-4" id="logout">logout</li>
                                                 </a>
                                           </ul>
                                     </div>
@@ -57,12 +57,12 @@
             <div class="buttons lg:pr-6 pr-2">
                 <a href="{% url 'view.login' %}" class="w-full h-full">
                     <button class="log-btns btns bg-[#0096FF] text-white font-medium rounded-3xl md:py-2 py-1 px-4 md:px-6 mx-2 inline-block">
-                                          <span>Login</span>
+                                          <span class="text-[#f4f2f1]">Login</span>
                                     </button>
                 </a>
                 <a href="{% url 'view.register' %}">
                     <button class="reg-btns btns bg-[#0096FF] text-white font-medium rounded-3xl md:py-2 py-1 px-4 md:px-6 mx-2 inline-block">
-                                          <span>Register</span>
+                                          <span class="text-[#f4f2f1]">Register</span>
                                     </button>
                 </a>
             </div>

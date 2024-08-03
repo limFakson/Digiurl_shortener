@@ -4,16 +4,11 @@ $.ajaxSetup({
     },
 });
 
-
 $("#longurl").val("")
 
 $(document).on('click', '.logo', function(e) {
     window.location.href = "/short/view/home"
 })
-
-$(document).on("click", ".cursor-pointer", function(e) {
-    console.log("rebuild");
-});
 
 function convert() {
     var longurl = $("#longurl").val();
@@ -24,10 +19,14 @@ function convert() {
         data: {
             url: longurl,
         },
+        headers: {
+            "Authorization": 'Token ' + localStorage.getItem('token')
+        },
 
         success: function(data) {
             console.log(data["shorturl"]);
             $('#short').text("");
+            $('.fa-copy').remove();
             var shorturl = data["shorturl"];
             var htmltext = '<p id="shorturl" class="inline-block pr-4 underline text-[#0d609b] cursor-copy">' + shorturl + "</p>";
             var icon = '<i class="fa-solid fa-copy"></i>'
@@ -57,6 +56,10 @@ $(document).on('click', "#copy", function(e) {
             alert.style.display = 'none';
         }
     }, 1000);
+})
+
+$(document).on('click', '#logout', function(e) {
+    localStorage.removeItem('token')
 })
 
 function drop() {
@@ -148,6 +151,7 @@ $(document).on('click', '#login-submit-btn', function(e) {
         },
 
         success: function(response) {
+            localStorage.setItem('token', response.token)
             location.href = "/short/view/home"
         },
         error: function(response) {
