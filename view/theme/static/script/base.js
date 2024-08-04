@@ -35,6 +35,12 @@ function convert() {
             $('#copy').append(icon)
             $("#longurl").val("")
         },
+        error: function(response) {
+            console.log(response.responseJSON)
+            if (response.responseJSON.message) {
+                $('#error').text(response.responseJSON.message)
+            }
+        }
     });
 }
 

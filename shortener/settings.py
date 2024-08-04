@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'shortener.wsgi.application'
+WSGI_APPLICATION = 'shortener.wsgi.app'
 
 
 REST_FRAMEWORK = {
