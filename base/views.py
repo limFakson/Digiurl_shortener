@@ -48,7 +48,7 @@ def convert_url(request):
         data = {
             "longurl": longurl,
             "shorturl": short_url,
-            "author": user.id
+            "author": user.id if user.is_authenticated else None
         }
         serializer = UrlSerializer(data=data)
         if serializer.is_valid():

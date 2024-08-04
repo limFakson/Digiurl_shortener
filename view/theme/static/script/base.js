@@ -161,6 +161,7 @@ $(document).on('click', '#login-submit-btn', function(e) {
             location.href = "/short/view/home"
         },
         error: function(response) {
+            console.log(response.responseJSON)
             if (response.responseJSON.message) {
                 $('#error').text(response.responseJSON.message).css('color', 'red')
             }
@@ -187,6 +188,7 @@ $(document).on('click', '#reg-submit-btn', function(e) {
             location.href = "/short/view/home"
         },
         error: function(response) {
+            console.log(response.responseJSON)
             if (response.responseJSON.message) {
                 $('#error').text(response.responseJSON.message)
 
