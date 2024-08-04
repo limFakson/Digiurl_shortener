@@ -169,10 +169,9 @@ TAILWIND_APP_NAME = 'view.theme'
 LOGIN_REDIRECT_URL = '/short/view/home'
 
 STATIC_URL = 'view.theme/static/'
-if not DEBUG:
-    
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','view.theme/static')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "view.theme"/"static")]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','view.theme/static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_URL = 'static/'
