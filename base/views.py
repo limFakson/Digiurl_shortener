@@ -19,6 +19,7 @@ from .functions import hashing
 
 config_file_path = "../.env"
 
+
 @api_view(['POST', 'GET'])
 def convert_url(request):
     if request.method == 'POST':

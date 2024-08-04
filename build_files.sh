@@ -6,7 +6,7 @@ python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
 
 #Appliy database migrations
-python3 manage.py makemigrations --no-input
+yes yes | python3 manage.py makemigrations
 python3 manage.py migrate --no-input
 
 # Convert static asset files

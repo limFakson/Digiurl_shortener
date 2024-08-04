@@ -4,6 +4,10 @@ $.ajaxSetup({
     },
 });
 
+var key = localStorage.getItem('token')
+
+var authToken = key ? 'Token ' + key : '';
+
 $("#longurl").val("")
 
 $(document).on('click', '.logo', function(e) {
@@ -20,8 +24,9 @@ function convert() {
             url: longurl,
         },
         headers: {
-            "Authorization": 'Token ' + localStorage.getItem('token')
+            "Authorization": authToken,
         },
+
 
         success: function(data) {
             console.log(data["shorturl"]);
@@ -115,11 +120,11 @@ if (password) {
         const errorMessage = document.getElementById('error');
         const passwordField = document.querySelector('.password');
         const submitBtn = document.getElementsByClassName('submit-btn')
+        submitBtn.disabled = true;
 
-        if (password.length < 4) {
-            errorMessage.textContent = "Password must be at least 4 characters.";
+        if (password.length < 6) {
+            errorMessage.textContent = "Password must be at least 6 characters.";
             passwordField.style.border = "1px solid red";
-            submitBtn.disabled = true;
         } else {
             errorMessage.textContent = "";
             passwordField.style.border = "";
@@ -184,14 +189,16 @@ $(document).on('click', '#reg-submit-btn', function(e) {
         },
 
         success: function(response) {
-            console.log(data)
+            console.log(response.responseJSON)
+            localStorage.setItem('token', response.token)
             location.href = "/short/view/home"
         },
         error: function(response) {
             console.log(response.responseJSON)
             if (response.responseJSON.message) {
                 $('#error').text(response.responseJSON.message)
-
+            } else if (response.responseJSON.password) {
+                $('#error').text(response.responseJSON.password)
             }
         }
     })
