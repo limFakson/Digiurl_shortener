@@ -15,7 +15,7 @@ class RedirectUrl(MiddlewareMixin):
             domain = request.get_full_path()
             sort_url = domain.split('/')
             
-            if len(sort_url) > 1 and sort_url[1] not in ["short", ""]:
+            if len(sort_url) > 1 and sort_url[1] not in ["short", "", "view"]:
                 base_url = config("WEBSITE_URL")
                 url = base_url + "/" + sort_url[1]
                 link = RedirectToUrl(url)
