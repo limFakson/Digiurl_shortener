@@ -105,3 +105,10 @@
 .links-container a:hover {
     text-decoration: underline;
 }
+
+.long-url {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}

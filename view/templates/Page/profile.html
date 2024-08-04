@@ -41,12 +41,14 @@
           class="link-card my-4 bg-white relative w-full px-4 sm:px-8 py-5 border border-[#2b2e3b3d] border-solid"
           data-link="{{ link }}"
         >
-          <div class="link-box flex flex-col sm:flex-row">
-            <div class="link-information sm:w-[75%] flex flex-row gap-6">
+          <div
+            class="link-box w-full flex flex-wrap flex-col sm:flex-row gap-1"
+          >
+            <div class="link-information sm:w-[65%] w-full flex flex-row gap-6">
               <span class="orb pt-1">
                 <input type="checkbox" name="orb" id="orb" />
               </span>
-              <div class="link-info-container">
+              <div class="link-info-container w-[85%]">
                 <h3 class="font-normal text-lg pb-[3px]">
                   Limfakson GIthub Home
                 </h3>
@@ -54,7 +56,7 @@
                   <div class="links-container">
                     <a
                       href="{{ link.shorturl }}"
-                      class="short-url block py-[3px] text-xs sm:text-sm font-light text-[#0096ff]"
+                      class="short-url block py-[4px] text-xs sm:text-sm font-light text-[#0096ff]"
                     >
                       {{ link.shorturl }}
                       <i
@@ -63,7 +65,7 @@
                     </a>
                     <a
                       href="{{ link.longurl }}"
-                      class="long-url block py-[3px] text-sm sm:text-base font-light"
+                      class="long-url block py-[4px] text-sm sm:text-base font-light"
                     >
                       {{ link.longurl }}
                     </a>
@@ -71,15 +73,15 @@
                   <div class="links-info mt-9">
                     <span class="text-sm font-light">
                       <i class="fa-regular fa-calendar-days pr-1"></i>
-                      {{ link.created_at }}
+                      {{ link.created_at|date:"M d, Y" }}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-            <hr class="" />
+            <hr class="w-[3%]" />
             <div
-              class="link-button pr-6 max-sm:mt-6 sm:w-[25%] relative flex flex-row gap-3 items-start justify-end"
+              class="link-button pr-2 max-sm:mt-6 sm:w-[30%] relative flex flex-row gap-3 items-start justify-end"
             >
               <div
                 class="copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
