@@ -230,6 +230,7 @@ $(document).on('click', '.share-btn', function (e) {
   var link = $(this).parent().parent().parent().data('link')
   $('.share-tab').show().css('display', 'grid')
   $('input[name="copy-input[]"]').val(link)
+  $('#social-link')
 })
 
 $(document).on('click', '.close', function (e) {
