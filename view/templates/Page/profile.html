@@ -39,7 +39,7 @@
         {% for link in url %}
         <div
           class="link-card my-4 bg-white relative w-full px-4 sm:px-8 py-5 border border-[#2b2e3b3d] border-solid"
-          data-link="{{ link }}"
+          data-link="{{ link.shorturl }}"
         >
           <div
             class="link-box w-full flex flex-wrap flex-col sm:flex-row gap-1"
@@ -54,15 +54,17 @@
                 </h3>
                 <div class="links flex flex-col justify-between">
                   <div class="links-container">
-                    <a
-                      href="{{ link.shorturl }}"
-                      class="short-url block py-[4px] text-xs sm:text-sm font-light text-[#0096ff]"
-                    >
-                      {{ link.shorturl }}
-                      <i
-                        class="fa-solid fa-copy pl-4 text-xs sm:text-sm copy"
-                      ></i>
-                    </a>
+                    <span>
+                      <a
+                        href="{{ link.shorturl }}"
+                        id="short"
+                        class="short-url py-[4px] text-xs sm:text-sm font-light text-[#0096ff]"
+                      >
+                        {{ link.shorturl }}
+                      </a>
+                      <p class="card-alert"></p>
+                    </span>
+
                     <a
                       href="{{ link.longurl }}"
                       class="long-url block py-[4px] text-sm sm:text-base font-light"
@@ -84,9 +86,16 @@
               class="link-button pr-2 max-sm:mt-6 sm:w-[30%] relative flex flex-row gap-3 items-start justify-end"
             >
               <div
-                class="copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
+                class="card-copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
+                
               >
                 <i class="fa-solid fa-copy pr-[2px]"></i> copy
+              </div>
+              <div
+                class="share-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
+                id="share"
+              >
+                <i class="fa-solid fa-share-nodes"></i> share
               </div>
               <div
                 class="copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
@@ -101,4 +110,88 @@
     </div>
   </div>
 </section>
+<div class="share-tab hidden h-full top-0 fixed w-full bg-[#0000002b]">
+  <div
+    class="tab py-4 px-6 bg-[#fff] w-[550px] pb-8 self-center justify-self-center"
+  >
+    <div class="text-right text-lg cursor-pointer close">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+    <div class="mt-[-15px] text-2xl font-semibold">Share your rendor link</div>
+    <div class="share-apps flex items-center justify-center m-8">
+      <div class="swipper flex">
+        <div
+          class="icons flex flex-col items-center flex-shrink-0 w-[65px] mr-8 h-full"
+        >
+          <span class="inline-block object-fill border border-solid">
+            <svg
+              viewBox="0 0 16 16"
+              height="28"
+              width="28"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>WhatsApp</title>
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M13.6031 2.32521C12.1064 0.826229 10.116 0.000884613 7.99513 0C3.6247 0 0.0681152 3.55615 0.066346 7.9279C0.0654614 9.32515 0.430807 10.6892 1.12479 11.8914L0 16L4.2028 14.8978C5.36076 15.5298 6.66468 15.862 7.9916 15.8624H7.99513C12.3647 15.8624 15.9217 12.3059 15.923 7.93454C15.9239 5.81589 15.0999 3.82418 13.6031 2.32565V2.32521ZM7.99513 14.5231H7.99248C6.8102 14.5231 5.65047 14.2051 4.63847 13.6045L4.39786 13.4616L1.90369 14.1158L2.56936 11.684L2.41278 11.4345C1.7533 10.3854 1.40477 9.17255 1.40521 7.92746C1.40654 4.29435 4.36291 1.33842 7.99779 1.33842C9.75773 1.3393 11.4124 2.02532 12.6566 3.2713C13.9008 4.51684 14.5855 6.17283 14.5846 7.93321C14.5829 11.5668 11.6269 14.5227 7.99513 14.5227V14.5231ZM11.6097 9.58832C11.4115 9.48925 10.4376 9.01023 10.2558 8.94388C10.074 8.87754 9.94217 8.84481 9.81036 9.04296C9.67855 9.24155 9.29861 9.68784 9.18317 9.81965C9.06773 9.9519 8.95184 9.96826 8.75413 9.86919C8.55598 9.77011 7.91773 9.5609 7.16094 8.88594C6.57223 8.36048 6.1746 7.71206 6.05872 7.51346C5.94327 7.31487 6.04633 7.20783 6.14541 7.10919C6.23431 7.02029 6.34356 6.87787 6.44264 6.76198C6.54172 6.64654 6.57445 6.56339 6.64079 6.43158C6.70714 6.29933 6.67397 6.18389 6.62443 6.08437C6.57489 5.98529 6.17902 5.01001 6.0136 4.6137C5.8526 4.22757 5.68939 4.27976 5.5682 4.27357C5.45276 4.26782 5.32051 4.26693 5.18826 4.26693C5.05601 4.26693 4.84149 4.31647 4.6597 4.51462C4.47791 4.71322 3.96616 5.19224 3.96616 6.16708C3.96616 7.14192 4.67607 8.08404 4.77514 8.21673C4.87422 8.34898 6.17239 10.35 8.15923 11.208C8.63161 11.4124 9.00094 11.534 9.28888 11.6256C9.76348 11.7764 10.1952 11.7552 10.5366 11.7043C10.917 11.6473 11.7087 11.2249 11.8737 10.7622C12.0387 10.2996 12.0387 9.9028 11.9892 9.82009C11.9396 9.73738 11.8074 9.68784 11.6092 9.58877V9.58788L11.6097 9.58832Z"
+                fill="#25D366"
+              ></path>
+            </svg>
+          </span>
+          <p class="text-[1rem] font-normal">WhatsApp</p>
+        </div>
+        <div
+          class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[65px] h-full"
+        >
+          <span class="inline-block object-fill border border-solid">
+            <svg
+              viewBox="0 0 48 48"
+              height="28"
+              width="28"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>Facebook</title>
+              <path
+                d="M48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 35.9789 8.77641 45.908 20.25 47.7084V30.9375H14.1562V24H20.25V18.7125C20.25 12.6975 23.8331 9.375 29.3152 9.375C31.9402 9.375 34.6875 9.84375 34.6875 9.84375V15.75H31.6613C28.68 15.75 27.75 17.6002 27.75 19.5V24H34.4062L33.3422 30.9375H27.75V47.7084C39.2236 45.908 48 35.9789 48 24Z"
+                fill="#1877F2"
+              ></path>
+            </svg>
+          </span>
+          <p class="text-[1rem] font-normal">Facbook</p>
+        </div>
+        <div
+          class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[65px] h-full"
+        >
+          <span class="inline-block object-fill border border-solid">
+            <svg
+              viewBox="0 0 48 48"
+              width="28"
+              height="28"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>X (Formerly Twitter)</title>
+              <path
+                d="M9.21598 10.0952L20.6877 25.4337L9.14368 37.9047H11.742L21.849 26.9859L30.0148 37.9047H38.8563L26.7389 21.7035L37.4841 10.0952H34.8858L25.5781 20.1509L18.0575 10.0952H9.21598ZM13.0369 12.0089H17.0986L35.0349 35.991H30.9732L13.0369 12.0089Z"
+                fill="#000000"
+              ></path>
+            </svg>
+          </span>
+          <p class="text-[1rem] font-normal">X</p>
+        </div>
+      </div>
+    </div>
+    <div class="copy-input flex w-full border-2 border-[#f4f2f1] border-solid">
+      <input type="text" name="copy-input[]" id="" class="w-[85%] h-full" disabled />
+      <button type="botton" class="w-[18%] pl-2 bg-[#f4f2f1]" >
+        <i class="fa-solid fa-copy pr-2"></i>Copy
+      </button>
+    </div>
+  </div>
+</div>
 {% endblock %}

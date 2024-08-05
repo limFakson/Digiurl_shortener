@@ -101,6 +101,8 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+
 # Determine which database to use based on the .env file
 if config('DB_CHOICE') == "mysql":
     DATABASES = {
@@ -166,16 +168,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 TAILWIND_APP_NAME = 'view.theme'
 
+
 LOGIN_REDIRECT_URL = '/short/view/home'
+
 
 STATIC_URL = 'view.theme/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "view.theme/static")]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','view.theme/static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

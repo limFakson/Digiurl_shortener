@@ -3,6 +3,8 @@ from django.conf import settings
 from django.utils.timezone import now
 from django.contrib.auth.models import User
 
+
+
 # Create your models here.
 class ShortenUrl(models.Model):
     author = models.ForeignKey(User, related_name='url', on_delete=models.CASCADE, null=True)
@@ -11,6 +13,8 @@ class ShortenUrl(models.Model):
     tags = models.CharField(max_length=500, null=True, default=None)
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateField(auto_now=True)
+    
+    
     
 class Profile(models.Model):
     author = models.ForeignKey(User, related_name='profile', on_delete=models.CASCADE, null=False)

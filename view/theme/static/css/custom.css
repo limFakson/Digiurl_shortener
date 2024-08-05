@@ -46,7 +46,8 @@
     background-color: #efefef;
 }
 
-.url-bar input {
+.url-bar input,
+.copy-input input {
     padding-left: 30px;
     /* border-radius: 20px 0 0 20px; */
     height: 100%;
@@ -111,4 +112,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+}
+
+.icons span {
+    padding: .9rem 1.5rem;
 }

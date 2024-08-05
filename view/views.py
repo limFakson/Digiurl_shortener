@@ -4,8 +4,11 @@ from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 
+
 from base.serializer import UserSerializer, UrlSerializer
 from base.models import ShortenUrl
+
+
 
 # Create your views here.
 def home(request):
@@ -14,9 +17,11 @@ def home(request):
     except:
         user =None
         
+        
     if user.is_authenticated:
         user = User.objects.get(username=user)
         return render(request, 'Page/home.html', {user:user})
+    
     return render(request, 'Page/home.html')
 
 
@@ -26,10 +31,13 @@ def login(request):
     except:
         user =None
         
+        
     if user.is_authenticated:
         return redirect('/short/view/home')
+    
     if request.method == "GET":
         return render(request, 'Auth/login.html')
+    
     
     
 def register(request):
@@ -40,8 +48,11 @@ def register(request):
         
     if user.is_authenticated:
         return redirect('/short/view/home')
+    
     if request.method == "GET":
         return render(request, 'Auth/register.html')
+
+
 
 
 def logout_view(request):
@@ -49,6 +60,10 @@ def logout_view(request):
     token = Token.objects.filter(user=user).delete()
     logout(request)
     return redirect('/short/view/home')
+
+
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 def profile(request):

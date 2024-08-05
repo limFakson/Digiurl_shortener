@@ -2,6 +2,7 @@ import re
 from django.shortcuts import render
 from decouple import config
 
+
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -11,13 +12,16 @@ from rest_framework.exceptions import NotFound
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 
+
 from django.contrib.auth.models import User
 from .models import ShortenUrl
 from .serializer import UrlSerializer, UserSerializer
 from .functions import hashing
 
 
+
 config_file_path = "../.env"
+
 
 
 @api_view(['POST', 'GET'])
@@ -28,17 +32,22 @@ def convert_url(request):
         except:
             return Response({"message": "not working"}, status=500)
         
+        
         longurl = request.data.get('url')
+
 
         if not longurl:
             return Response({"message": "Need to pass URL"}, status=400)
 
+           
             
         existing_url = ShortenUrl.objects.filter(longurl=longurl).first()
+        
         
         if existing_url:
             serializer = UrlSerializer(existing_url)
             return Response(serializer.data, status=200)
+
 
         # If URL is not found, create a new shortened URL
         cleaned_url = longurl.replace('?', '').replace('=', '').replace('_', '').replace('-', '')
@@ -51,12 +60,19 @@ def convert_url(request):
             "shorturl": short_url,
             "author": user.id if user.is_authenticated else None
         }
+        
         serializer = UrlSerializer(data=data)
+        
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
+        
         return Response(serializer.errors, status=400)
+    
     return Response()  
+
+
+
 
 # Registration Authetication view
 @csrf_protect
@@ -67,8 +83,10 @@ def userregistration(request):
 
     """
 
+
     if request.method == "POST":
         serializer = UserSerializer(data=request.data)
+        
         if serializer.is_valid():
             username = serializer.validated_data.get("username")
             email = serializer.validated_data.get("email")
@@ -77,8 +95,10 @@ def userregistration(request):
             #filter for existing user
             if User.objects.filter(username=username).exists():
                 return Response({"message":"Username already taken"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
             elif User.objects.filter(email=email).exists():
                 return Response({"message":"Email associated with another account"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
             else:
                 try:
                     new_user = User.objects.create_user(
@@ -89,11 +109,15 @@ def userregistration(request):
                     token, created = Token.objects.get_or_create(user=user)
                     login(request, user)
                     return Response({"message":"User sucessfully created", "token":token.key}, status=200)
+                
                 except:
                     return Response({"message":"User already exist"}, status=status.HTTP_400_BAD_REQUEST)
             
+        
         else:
             return Response(serializer.errors, status=400)
+       
+       
         
 # Login Authentication View
 @csrf_protect
@@ -103,25 +127,32 @@ def userLogin(request):
     credential = request.data.get("credential")
     password = request.data.get("password")
 
+
     if not credential or not password:
         return Response(
             {"message": "Invalid request. Both credential and password are required."},
             status=status.HTTP_400_BAD_REQUEST,
         )
+    
+    
     is_email = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+    
     
     if re.match(is_email, credential):
         name = User.objects.filter(email=credential)
         user = authenticate(request, username=name[0], password=password)
+   
     else:
         user = authenticate(request, username=credential, password=password)
 
+    
     if user is not None:
         token, created = Token.objects.get_or_create(user=user)
         login(request, user)
         return Response(
         {"message": "Login successful", "token": token.key, "user_id": user.id},
         status=status.HTTP_200_OK)
+   
     else:
         return Response(
             {"message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED
