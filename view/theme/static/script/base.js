@@ -8,8 +8,6 @@ var key = localStorage.getItem('token')
 
 var authToken = key ? 'Token ' + key : ''
 
-$('#longurl').val('')
-
 $(document).on('click', '.logo', function (e) {
   window.location.href = '/short/view/home'
 })
@@ -37,7 +35,6 @@ function convert () {
 
       $('#short').append(htmltext)
       $('#copy').append(icon)
-      $('#longurl').val('')
     },
     error: function (response) {
       console.log(response.responseJSON)
@@ -48,7 +45,6 @@ function convert () {
   })
 }
 
-$('.short').text('')
 $(document).on('click', '#copy', function (e) {
   var temp = $('<input/>')
   $('body').append(temp)
@@ -59,6 +55,7 @@ $(document).on('click', '#copy', function (e) {
   $('.short').text('')
   var alert = '<p class="underline text-base pt-2" id="alert">copied!!😎</p>'
   $('.short').append(alert)
+  $('#longurl').val('')
 
   setTimeout(() => {
     $('.short').text('')
@@ -151,7 +148,7 @@ function reveal () {
 
 $(document).on('click', '#login-submit-btn', function (e) {
   e.preventDefault()
-  var credential = $('input[name="credential"]').val()
+  var credential = $('input[name="credential"]').val().toLowerCase()
   var password = $('input[name="password"]').val()
   $.ajax({
     type: 'POST',
@@ -197,7 +194,7 @@ $(document).on('click', '.card-copy-btn', function (e) {
 
 $(document).on('click', '#reg-submit-btn', function (e) {
   e.preventDefault()
-  var username = $('input[name="username"]').val()
+  var username = $('input[name="username"]').val().toLowerCase()
   var email = $('input[name="email"]').val()
   var password = $('input[name="password"]').val()
   $.ajax({
@@ -230,7 +227,11 @@ $(document).on('click', '.share-btn', function (e) {
   var link = $(this).parent().parent().parent().data('link')
   $('.share-tab').show().css('display', 'grid')
   $('input[name="copy-input[]"]').val(link)
-  $('#social-link')
+  var currentHref = $('#social-link').attr('href')
+  var newHref = currentHref + ' ' + encodeURIComponent(link)
+  console.log(currentHref, newHref)
+
+  $('#social-link').attr('href', newHref)
 })
 
 $(document).on('click', '.close', function (e) {
@@ -255,3 +256,69 @@ $(document).on('click', '.copy-input button', function (e) {
     }
   }, 700)
 })
+
+// $(document).on('click', '.option-btn', function (e) {
+//   var options = $(this).parent().find('.options')
+
+//   if (options.css('display') === 'none' || options.css('display') === ' ') {
+//     options.css('display', 'block')
+//     setTimeout(() => {
+//       options.css({ transform: 'translateX(0)', opacity: 1 }, 300)
+//     }, 1)
+//   // options.show()
+//   } else {
+//     options.css({ transform: 'translateX(50px)', opacity: 0 }, 300, function () {
+//       // options.hide()
+//     })
+//     setTimeout(() => {
+//       options.css('display', 'none')
+//     }, 400)
+//   }
+// })
+
+$(document).ready(function () {
+  let currentOpenOptions = null
+
+  $(document).on('click', '.option-btn', function (e) {
+    e.stopPropagation() // Prevent the click from propagating to the document
+    var options = $(this).parent().find('.options')
+
+    // Close the currently open options if it's not the same as the one being clicked
+    if (currentOpenOptions && currentOpenOptions[0] !== options[0]) {
+      currentOpenOptions.css({ transform: 'translateX(50px)', opacity: 0 })
+      setTimeout(() => {
+        currentOpenOptions.css('display', 'none')
+      }, 300)
+    }
+
+    // Toggle the clicked options
+    if (options.css('display') === 'none' || options.css('display') === '') {
+      options.css('display', 'block')
+      setTimeout(() => {
+        options.css({ transform: 'translateX(0)', opacity: 1 })
+      }, 10) // Delay slightly to allow for the display change to take effect
+      currentOpenOptions = options // Update the current open options
+    } else {
+      options.css({ transform: 'translateX(50px)', opacity: 0 })
+      setTimeout(() => {
+        options.css('display', 'none')
+      }, 300)
+      currentOpenOptions = null // Reset the current open options
+    }
+  })
+
+  // Click event for document to hide dropdowns when clicking outside
+  $(document).on('click', function () {
+    if (currentOpenOptions) {
+      currentOpenOptions.css({ transform: 'translateX(50px)', opacity: 0 })
+      setTimeout(() => {
+        currentOpenOptions.css('display', 'none')
+      }, 300)
+      currentOpenOptions = null
+    }
+  })
+})
+
+// $(document).on('click', function () {
+//   hideAllDropdowns()
+// })

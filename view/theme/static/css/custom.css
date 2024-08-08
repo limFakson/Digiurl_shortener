@@ -76,6 +76,10 @@
         width: 40%;
         height: 10rem;
     }
+
+    .drop {
+        left: 2rem;
+    }
 }
 
 @media (max-width:480px) {
@@ -116,4 +120,25 @@
 
 .icons span {
     padding: .9rem 1.5rem;
+}
+
+.link-button div:hover {
+    background-color: #f4f2f1;
+}
+
+.options {
+    transform: translateX(50px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition-behavior: allow-discrete;
+    transition-delay: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.options li:hover {
+    background-color: #fff;
+}
+
+.options li {
+    padding: 5px 10px;
+    cursor: pointer;
 }

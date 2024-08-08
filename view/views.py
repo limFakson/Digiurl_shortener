@@ -33,7 +33,7 @@ def login(request):
         
         
     if user.is_authenticated:
-        return redirect('/short/view/home')
+        return redirect('/short/view/profile')
     
     if request.method == "GET":
         return render(request, 'Auth/login.html')
@@ -47,7 +47,7 @@ def register(request):
         user =None
         
     if user.is_authenticated:
-        return redirect('/short/view/home')
+        return redirect('/short/view/profile')
     
     if request.method == "GET":
         return render(request, 'Auth/register.html')
