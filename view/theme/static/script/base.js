@@ -225,10 +225,12 @@ $(document).on('click', '#reg-submit-btn', function (e) {
 $(document).on('click', '.share-btn', function (e) {
   console.log('free')
   var link = $(this).parent().parent().parent().data('link')
+  var encodedLink = encodeURIComponent(link)
+  console.log(encodedLink)
   $('.share-tab').show().css('display', 'grid')
   $('input[name="copy-input[]"]').val(link)
   var currentHref = $('#social-link').attr('href')
-  var newHref = currentHref + ' ' + encodeURIComponent(link)
+  var newHref = currentHref + '' + encodedLink
   console.log(currentHref, newHref)
 
   $('#social-link').attr('href', newHref)
