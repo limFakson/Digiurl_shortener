@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from view import views as viewView
 
 
 urlpatterns = [
+    path('', viewView.revert, name='home'),
     path('short/admin/', admin.site.urls),
     path('short/api/', include('base.urls')),
     path('short/view/', include('view.urls')),

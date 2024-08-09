@@ -10,7 +10,7 @@ yes yes | python3 manage.py makemigrations
 python3 manage.py migrate --no-input
 
 # Convert static asset files
-python3 manage.py collectstatic --no-input
+yes | python3 manage.py collectstatic
 
 
 #start tailwind

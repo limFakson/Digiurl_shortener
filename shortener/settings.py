@@ -172,15 +172,17 @@ TAILWIND_APP_NAME = 'view.theme'
 LOGIN_REDIRECT_URL = '/short/view/home'
 
 
-STATIC_URL = 'view.theme/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "view.theme/static")]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','view.theme/static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'view.theme/static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-MEDIA_URL = 'static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
 
 
 # Default primary key field type

@@ -11,6 +11,9 @@ from base.models import ShortenUrl
 
 
 # Create your views here.
+def revert(request):
+    return redirect('/short/view/home')
+
 def home(request):
     try:
         user = request.user
