@@ -108,14 +108,14 @@
   </div>
 </section>
 <div class="share-tab hidden h-full top-0 fixed w-full bg-[#0000005d]">
-  <div class="tab py-4 px-6 bg-[#fff] w-[550px] pb-8 self-center justify-self-center">
+  <div class="tab py-4 px-6 bg-[#fff] w-[400px] sm:w-[550px] pb-8 self-center justify-self-center">
     <div class="text-right text-lg cursor-pointer close">
       <i class="fa-solid fa-xmark"></i>
     </div>
     <div class="mt-[-15px] text-2xl font-semibold">Share your rendor link</div>
-    <div class="share-apps flex items-center justify-center m-8">
-      <div class="swipper flex">
-        <div class="icons flex flex-col items-center flex-shrink-0 w-[65px] mr-8 h-full">
+    <div class="share-apps flex items-center justify-center my-8 sm:m-8">
+      <div class="swipper max-sm:gap-3 flex">
+        <div class="icons flex flex-col items-center flex-shrink-0 w-[45px] sm:w-[65px] mr-9 sm:mr-8 h-full">
           <span class="inline-block object-fill border border-solid">
             <a id="social-link"
               href="https://wa.me/?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
@@ -132,7 +132,7 @@
           </span>
           <p class="text-[1rem] font-normal">WhatsApp</p>
         </div>
-        <div class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[65px] h-full">
+        <div class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[45px] sm:w-[65px] h-full">
           <span class="inline-block object-fill border border-solid">
             <a href="https://www.facebook.com/sharer/sharer.php?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
               data-action="share/whatsapp/share" target="_blank" id="social-link">
@@ -146,7 +146,7 @@
           </span>
           <p class="text-[1rem] font-normal">Facbook</p>
         </div>
-        <div class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[65px] h-full">
+        <div class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[45px] sm:w-[65px] h-full">
           <span class="inline-block object-fill border border-solid">
             <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
               data-action="share/facebook/share" target="_blank" id="social-link">
@@ -164,8 +164,8 @@
       </div>
     </div>
     <div class="copy-input flex w-full border-2 border-[#f4f2f1] border-solid">
-      <input type="text" name="copy-input[]" id="" class="w-[85%] h-full" disabled>
-      <button type="button" class="w-[18%] pl-2 bg-[#f4f2f1]">
+      <input type="text" name="copy-input[]" id="" class="w-[75%] sm:w-[83%] text-sm sm:text-base h-full" disabled>
+      <button type="button" class="w-[25%] sm:w-[20%] pl-2 bg-[#f4f2f1]">
         <i class="fa-solid fa-copy pr-2"></i>
         Copy
       </button>
@@ -173,7 +173,9 @@
   </div>
 </div>
 
-<div class="edit-profile w-full h-full bg-[#0000005d] fixed top-0"></div>
+<div class="edit-profile hidden w-full h-full bg-[#0000005d] fixed top-0">
+  <div class="tab py-4 px-6 bg-[#fff] w-[300px] sm:w-[550px] pb-6 self-center justify-self-center"></div>
+</div>
 
 <section id="profile">
   <form action="" id="profile">

@@ -46,12 +46,19 @@
     background-color: #efefef;
 }
 
-.url-bar input,
-.copy-input input {
+.url-bar input {
     padding-left: 30px;
     /* border-radius: 20px 0 0 20px; */
     height: 100%;
     width: 85%;
+    border: none;
+    outline: none;
+}
+
+.copy-input input {
+    padding-left: 30px;
+    /* border-radius: 20px 0 0 20px; */
+    height: 100%;
     border: none;
     outline: none;
 }
