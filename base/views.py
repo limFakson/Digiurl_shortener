@@ -1,22 +1,26 @@
+import os
 import re
-from django.shortcuts import render
+from pathlib import Path
 from decouple import config
+from django.conf import settings
+from django.shortcuts import render
 
 
-from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from django.contrib.auth import authenticate, login, logout
+from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_protect
-from rest_framework.response import Response
-from rest_framework.exceptions import NotFound
 from rest_framework.authtoken.models import Token
+from rest_framework.exceptions import NotFound
+from rest_framework.response import Response
 from rest_framework import status
 
 
-from django.contrib.auth.models import User
-from .models import ShortenUrl
-from .serializer import UrlSerializer, UserSerializer
 from .functions import hashing
+from .models import ShortenUrl, Profile
+from django.contrib.auth.models import User
+from .serializer import UrlSerializer, UserSerializer, ProfileSerializer
 
 
 
@@ -158,4 +162,69 @@ def userLogin(request):
             {"message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED
         )
         
+
+@api_view(['POST', 'GET'])
+def profile(request):
+    try:
+        user = request.user  
+    except:
+        return Response({"message": "not working"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    # Build paths inside the project like this: BASE_DIR / 'subdir'.
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
+    if request.method == "POST":
+        profile_pics = request.FILES.get('profile_pics')
+        bio = request.data.get("bio")
         
+        if user.is_authenticated: 
+            author = user
+        else: 
+            return Response({"message":"You need to login to edit profile"}, status=401)
+        
+        # Check if the user already has a profile and delete the existing profile picture
+        try:
+            profile = Profile.objects.get(author=user)
+            if profile.profile_pics:
+                old_image_path = os.path.join(BASE_DIR, 'view', 'theme', profile.profile_pics)
+                    
+                if os.path.exists(old_image_path):
+                    os.remove(old_image_path)
+                profile.delete()
+        except Profile.DoesNotExist:
+            pass
+        
+        if profile_pics:
+            fs = FileSystemStorage(location=settings.MEDIA_ROOT)
+            filename = fs.save(profile_pics.name, profile_pics)
+            image_url = fs.url(filename)
+            
+            data = {
+                "author":author.id,
+                'bio':bio,
+                'profile_pics': image_url
+            }
+            
+            serializer = ProfileSerializer(data=data)
+            
+            if serializer.is_valid():
+                serializer.save(profile_pics=f'/static{image_url}')
+                return Response({"message": "Uploaded successfully"}, status=status.HTTP_201_CREATED)
+            
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        return Response({"message": "Profile picture is required"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == "GET":
+        if not user.is_authenticated:
+            return Response({"message":"You need to login to view profile"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        profile = Profile.objects.filter(author=user).first()
+        if profile:
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    return Response({"message": "Request not accepted"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

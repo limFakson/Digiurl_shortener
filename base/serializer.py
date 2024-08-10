@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import ShortenUrl
+from .models import ShortenUrl, Profile
 
 class UserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=400)
@@ -19,3 +19,12 @@ class UrlSerializer(serializers.ModelSerializer):
             'longurl',
             'shorturl'
         ]
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = [
+            'author',
+            'bio'
+        ]
+        read_only = ['profile_pics']

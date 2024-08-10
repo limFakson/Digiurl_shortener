@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 
 
 from base.serializer import UserSerializer, UrlSerializer
-from base.models import ShortenUrl
+from base.models import ShortenUrl, Profile
 
 
 
@@ -77,9 +77,13 @@ def profile(request):
     
     if user.is_authenticated:
         user = User.objects.get(username=user)
+        try:
+            profile = Profile.objects.get(author=user)
+        except:
+            profile = None
         url = ShortenUrl.objects.filter(author=user.id)
         
-        return render(request, 'Page/profile.html', {"user":user, "url":url})
+        return render(request, 'Page/profile.html', {"user":user, "url":url, "profile":profile})
     else:
         return redirect('/short/view/auth/login')
         

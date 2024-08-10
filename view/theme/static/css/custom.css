@@ -99,6 +99,34 @@
     background-color: rgb(43, 46, 59);
 }
 
+@media(max-width: 840px) {
+
+    .user-profile,
+    .link-int {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+.avater {
+    width: 100%;
+    height: 21rem;
+}
+
+@media(min-width:640px) {
+    .avater {
+        width: 100%;
+        height: 30rem;
+    }
+}
+
+@media (min-width:840px) {
+    .avater {
+        width: 100%;
+        height: 22rem;
+    }
+}
+
 .edit-profile a {
     touch-action: manipulation;
     user-select: none;

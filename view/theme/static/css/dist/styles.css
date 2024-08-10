@@ -879,6 +879,10 @@ select {
   margin-top: -15px;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -929,10 +933,6 @@ select {
 
 .h-\[80px\] {
   height: 80px;
-}
-
-.h-auto {
-  height: auto;
 }
 
 .h-full {
@@ -1101,6 +1101,10 @@ select {
   border-radius: 50%/50%;
 }
 
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -1192,9 +1196,31 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#00000036\] {
+  background-color: #00000036;
+}
+
+.bg-\[\#00000047\] {
+  background-color: #00000047;
+}
+
+.bg-\[\#0000005d\] {
+  background-color: #0000005d;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .object-fill {
   -o-object-fit: fill;
      object-fit: fill;
+}
+
+.object-top {
+  -o-object-position: top;
+     object-position: top;
 }
 
 .p-2 {
@@ -1523,6 +1549,11 @@ select {
     padding-right: 2rem;
   }
 
+  .max-sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .max-sm\:pb-2 {
     padding-bottom: 0.5rem;
   }
@@ -1562,6 +1593,26 @@ select {
     width: 65%;
   }
 
+  .sm\:w-\[40\%\] {
+    width: 40%;
+  }
+
+  .sm\:w-\[60\%\] {
+    width: 60%;
+  }
+
+  .sm\:w-\[50\%\] {
+    width: 50%;
+  }
+
+  .sm\:w-\[55\%\] {
+    width: 55%;
+  }
+
+  .sm\:w-\[43\%\] {
+    width: 43%;
+  }
+
   .sm\:flex-row {
     flex-direction: row;
   }
@@ -1573,6 +1624,11 @@ select {
   .sm\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .sm\:px-8 {
@@ -1626,9 +1682,21 @@ select {
     width: 45rem;
   }
 
+  .md\:w-\[90\%\] {
+    width: 90%;
+  }
+
+  .md\:w-\[100\%\] {
+    width: 100%;
+  }
+
   .md\:gap-x-4 {
     -moz-column-gap: 1rem;
          column-gap: 1rem;
+  }
+
+  .md\:p-0 {
+    padding: 0px;
   }
 
   .md\:px-6 {
@@ -1648,6 +1716,11 @@ select {
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .md\:font-medium {
@@ -1670,6 +1743,26 @@ select {
 
   .lg\:w-\[75\%\] {
     width: 75%;
+  }
+
+  .lg\:w-\[30\%\] {
+    width: 30%;
+  }
+
+  .lg\:w-\[60\%\] {
+    width: 60%;
+  }
+
+  .lg\:w-\[35\%\] {
+    width: 35%;
+  }
+
+  .lg\:w-\[62\%\] {
+    width: 62%;
+  }
+
+  .lg\:pl-4 {
+    padding-left: 1rem;
   }
 
   .lg\:pr-6 {

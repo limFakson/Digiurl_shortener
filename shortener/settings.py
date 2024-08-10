@@ -174,15 +174,14 @@ LOGIN_REDIRECT_URL = '/short/view/home'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'view.theme/static'),
+    os.path.join(BASE_DIR, 'view', 'theme', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'view', 'theme', 'static', 'media')
 
 
 # Default primary key field type

@@ -2,10 +2,19 @@
 <section class="flex flex-col">
   <div class="space h-[20px]"></div>
   <div class="dashboard m-6 relative">
-    <div class="user-profile max-md:w-full w-[35%] lg:w-[25%] float-left relative pl-4">
+    <div class="user-profile w-[35%] lg:w-[25%] float-left relative max-sm:px-0 px-6 md:p-0 lg:pl-4">
       <div class="profile-avater">
-        <img src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}" alt="prof-pics"
-          class="w-full h-auto align-middle max-w-full block object-fill">
+        {% if profile is None %}
+        <div class="avater">
+          <img src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}" alt="prof-pics"
+            class="rounded-md w-full h-full object-top object-cover">
+        </div>
+        {% else %}
+        <div class="avater">
+          <img src="{{ profile.profile_pics }}" alt="prof-pics"
+            class="rounded-md w-full h-full object-top object-cover">
+        </div>
+        {% endif %}
         <div class="edit-profile mt-5">
           <a href=""
             class="text-center align-middle border-[#2B2E3B] border border-solid w-full inline-block bg-[#f4f2f1] py-[6px] px-3">
@@ -20,11 +29,14 @@
         <p class="text-sm font-light">{{ user.email}}</p>
       </div>
       <div class="profile-bio mt-5">
-        <p class="text-base font-light">........</p>
+        {% if profile is None %}
+        {% else %}
+        <p class="text-base font-light">{{ profile.bio }}</p>
+        {% endif %}
       </div>
     </div>
-    <div class="float-left relative sm:px-4 max-md:w-full w-[65%] lg:w-[75%] max-md:mt-9">
-      <span class="sm:px-4 md:pl-8 font-medium md:text-3xl text-2xl">
+    <div class="link-int float-left relative sm:px-4 w-[65%] lg:w-[75%] max-md:mt-9 mt-6">
+      <span class="sm:px-4 md:pl-8 font-medium md:text-2xl text-xl">
         Your Links
       </span>
       <div class="activity w-full sm:px-4 md:pl-8 md:mr-[-10px] mt-4">
@@ -32,7 +44,7 @@
         <div class="link-card my-4 bg-white relative w-full px-4 sm:px-8 py-5 border border-[#2b2e3b3d] border-solid"
           data-link="{{ link.shorturl }}">
           <div class="link-box w-full relative flex flex-wrap flex-col sm:flex-row gap-1">
-            <div class="link-information sm:w-[65%] w-full flex flex-row gap-6">
+            <div class="link-information sm:w-[55%] lg:w-[62%] md:w-[90%] w-full flex flex-row gap-6">
               <span class="orb pt-1">
                 <input type="checkbox" name="orb" id="orb">
               </span>
@@ -62,8 +74,9 @@
                 </div>
               </div>
             </div>
-            <hr class="w-[3%]">
-            <div class="link-button pr-2 max-sm:mt-6 sm:w-[30%] relative flex flex-row gap-3 items-start justify-end">
+            <!-- <hr class="w-[3%]"> -->
+            <div
+              class="link-button pr-2 max-sm:mt-6 sm:w-[43%] lg:w-[35%] md:w-[100%] relative flex flex-row gap-3 items-start justify-end">
               <div
                 class="card-copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer">
                 <i class="fa-solid fa-copy pr-[2px]"></i>
@@ -94,7 +107,7 @@
     </div>
   </div>
 </section>
-<div class="share-tab hidden h-full top-0 fixed w-full bg-[#0000002b]">
+<div class="share-tab hidden h-full top-0 fixed w-full bg-[#0000005d]">
   <div class="tab py-4 px-6 bg-[#fff] w-[550px] pb-8 self-center justify-self-center">
     <div class="text-right text-lg cursor-pointer close">
       <i class="fa-solid fa-xmark"></i>
@@ -152,11 +165,21 @@
     </div>
     <div class="copy-input flex w-full border-2 border-[#f4f2f1] border-solid">
       <input type="text" name="copy-input[]" id="" class="w-[85%] h-full" disabled>
-      <button type="botton" class="w-[18%] pl-2 bg-[#f4f2f1]">
+      <button type="button" class="w-[18%] pl-2 bg-[#f4f2f1]">
         <i class="fa-solid fa-copy pr-2"></i>
         Copy
       </button>
     </div>
   </div>
 </div>
+
+<div class="edit-profile w-full h-full bg-[#0000005d] fixed top-0"></div>
+
+<section id="profile">
+  <form action="" id="profile">
+    <input type="text" name="bio">
+    <input type="file" name="profile_pics" id="">
+    <button type="submit" id="profiel-btn">send</button>
+  </form>
+</section>
 {% endblock %}

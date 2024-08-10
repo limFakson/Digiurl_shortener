@@ -18,7 +18,7 @@ class ShortenUrl(models.Model):
     
 class Profile(models.Model):
     author = models.ForeignKey(User, related_name='profile', on_delete=models.CASCADE, null=False)
-    profile_pics = models.URLField(default=f'{settings.STATIC_URL}image/Solo-Leveling-Sung-jin-woo.jpg')
+    profile_pics = models.URLField(default='image/Solo-Leveling-Sung-jin-woo.jpg')
     bio = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)

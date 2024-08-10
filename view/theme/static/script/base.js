@@ -222,6 +222,43 @@ $(document).on('click', '#reg-submit-btn', function (e) {
   })
 })
 
+$('#profile').on('click', '#profiel-btn', function (event) {
+  event.preventDefault()
+
+  console.log('submit')
+
+  var bio = $('input[name="bio"]').val()
+  var formData = new FormData()
+  var profilePics = $('input[name="profile_pics"]')[0].files[0]
+
+  console.log(profilePics)
+  formData.append('bio', bio)
+  formData.append('profile_pics', profilePics)
+
+  $.ajax({
+    type: 'POST',
+    url: '/short/api/auth/profile',
+    data: formData,
+    contentType: false,
+    processData: false,
+    headers: {
+      'Authorization': authToken
+    },
+    success: function (response) {
+      console.log(response)
+    // location.href = '/short/view/home'
+    },
+    error: function (response) {
+      console.log(response)
+    // if (response.responseJSON.message) {
+    //   $('#error').text(response.responseJSON.message)
+    // } else if (response.responseJSON.password) {
+    //   $('#error').text(response.responseJSON.password)
+    // }
+    }
+  })
+})
+
 $(document).on('click', '.share-btn', function (e) {
   console.log('free')
   var link = $(this).parent().parent().parent().data('link')
