@@ -22,8 +22,12 @@ def home(request):
         
         
     if user.is_authenticated:
+        try:
+            profile = Profile.objects.get(author=user)
+        except:
+            profile = None
         user = User.objects.get(username=user)
-        return render(request, 'Page/home.html', {user:user})
+        return render(request, 'Page/home.html', {"user":user, "profile":profile})
     
     return render(request, 'Page/home.html')
 

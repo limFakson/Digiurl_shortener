@@ -36,10 +36,17 @@
                   {% if user.is_authenticated %}
                   <button class="cursor-pointer">
                         <div class="account lg:pr-6 pr-2 flex md:gap-x-4 gap-2 justify-start items-center relative">
-                              <div class="icon w-8 h-6 sm:w-10 sm:h-8">
+                              {% if profile is None %}
+                              <div class="icon ">
                                     <img src="{% static 'image/3135715-removebg-preview.png' %}" alt="prof-pics"
-                                          class="max-w-full object-fill">
+                                          class="w-10 h-10 rounded-full object-fill object-top">
                               </div>
+                              {% else %}
+                              <div class="icon ">
+                                    <img src="{{ profile.profile_pics }}" alt="prof-pics"
+                                          class="w-10 h-10 rounded-full object-fill object-top">
+                              </div>
+                              {% endif %}
                               <div class="user flex justify-end gap-2 items-center pt-2">
                                     <h4 class="text-base font-medium">
                                           {{ user.username|capfirst }}

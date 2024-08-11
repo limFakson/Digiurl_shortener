@@ -170,10 +170,12 @@ def profile(request):
     except:
         return Response({"message": "not working"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
+    
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
 
     if request.method == "POST":
+        
         profile_pics = request.FILES.get('profile_pics')
         bio = request.data.get("bio")
         
@@ -182,22 +184,12 @@ def profile(request):
         else: 
             return Response({"message":"You need to login to edit profile"}, status=401)
         
-        # Check if the user already has a profile and delete the existing profile picture
-        try:
-            profile = Profile.objects.get(author=user)
-            if profile.profile_pics:
-                old_image_path = os.path.join(BASE_DIR, 'view', 'theme', profile.profile_pics)
-                    
-                if os.path.exists(old_image_path):
-                    os.remove(old_image_path)
-                profile.delete()
-        except Profile.DoesNotExist:
-            pass
         
         if profile_pics:
             fs = FileSystemStorage(location=settings.MEDIA_ROOT)
             filename = fs.save(profile_pics.name, profile_pics)
             image_url = fs.url(filename)
+            
             
             data = {
                 "author":author.id,
@@ -205,16 +197,32 @@ def profile(request):
                 'profile_pics': image_url
             }
             
+            
             serializer = ProfileSerializer(data=data)
             
+            
             if serializer.is_valid():
+                # Check if the user already has a profile and delete the existing profile picture
+                try:
+                    profile = Profile.objects.get(author=user)
+                    if profile.profile_pics:
+                        old_image_path = os.path.join(BASE_DIR, f'view/theme{profile.profile_pics}')
+                        
+                        if os.path.exists(old_image_path):
+                            os.remove(old_image_path)
+                        profile.delete()
+                        
+                except Profile.DoesNotExist:
+                    pass
+                
                 serializer.save(profile_pics=f'/static{image_url}')
                 return Response({"message": "Uploaded successfully"}, status=status.HTTP_201_CREATED)
             
-            print(serializer.errors)
+            
             return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         return Response({"message": "Profile picture is required"}, status=status.HTTP_400_BAD_REQUEST)
+    
     
     elif request.method == "GET":
         if not user.is_authenticated:
@@ -226,5 +234,6 @@ def profile(request):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response({"message": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+    
     
     return Response({"message": "Request not accepted"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

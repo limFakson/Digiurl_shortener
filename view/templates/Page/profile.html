@@ -15,11 +15,11 @@
             class="rounded-md w-full h-full object-top object-cover">
         </div>
         {% endif %}
-        <div class="edit-profile mt-5">
-          <a href=""
-            class="text-center align-middle border-[#2B2E3B] border border-solid w-full inline-block bg-[#f4f2f1] py-[6px] px-3">
+        <div class="edit-profile-btn mt-5">
+          <span
+            class="text-center cursor-pointer align-middle border-[#2B2E3B] border border-solid w-full inline-block bg-[#f4f2f1] py-[6px] px-3">
             Edit profile
-          </a>
+          </span>
         </div>
       </div>
       <div class="profile-title mt-5">
@@ -108,14 +108,14 @@
   </div>
 </section>
 <div class="share-tab hidden h-full top-0 fixed w-full bg-[#0000005d]">
-  <div class="tab py-4 px-6 bg-[#fff] w-[400px] sm:w-[550px] pb-8 self-center justify-self-center">
+  <div class="tab py-4 px-4 sm:px-6 bg-[#fff] w-[370px] sm:w-[550px] pb-8 self-center justify-self-center">
     <div class="text-right text-lg cursor-pointer close">
       <i class="fa-solid fa-xmark"></i>
     </div>
-    <div class="mt-[-15px] text-2xl font-semibold">Share your rendor link</div>
+    <div class="mt-[-15px] text-lg sm:text-2xl font-semibold">Share your rendor link</div>
     <div class="share-apps flex items-center justify-center my-8 sm:m-8">
-      <div class="swipper max-sm:gap-3 flex">
-        <div class="icons flex flex-col items-center flex-shrink-0 w-[45px] sm:w-[65px] mr-9 sm:mr-8 h-full">
+      <div class="swipper gap-3 flex">
+        <div class="icons flex flex-col items-center flex-shrink-0 h-full">
           <span class="inline-block object-fill border border-solid">
             <a id="social-link"
               href="https://wa.me/?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
@@ -132,7 +132,7 @@
           </span>
           <p class="text-[1rem] font-normal">WhatsApp</p>
         </div>
-        <div class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[45px] sm:w-[65px] h-full">
+        <div class="icons flex flex-col items-center flex-shrink-0 h-full">
           <span class="inline-block object-fill border border-solid">
             <a href="https://www.facebook.com/sharer/sharer.php?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
               data-action="share/whatsapp/share" target="_blank" id="social-link">
@@ -146,7 +146,7 @@
           </span>
           <p class="text-[1rem] font-normal">Facbook</p>
         </div>
-        <div class="icons flex flex-col items-center flex-shrink-0 mr-8 w-[45px] sm:w-[65px] h-full">
+        <div class="icons flex flex-col items-center flex-shrink-0 h-full">
           <span class="inline-block object-fill border border-solid">
             <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
               data-action="share/facebook/share" target="_blank" id="social-link">
@@ -173,15 +173,69 @@
   </div>
 </div>
 
-<div class="edit-profile hidden w-full h-full bg-[#0000005d] fixed top-0">
-  <div class="tab py-4 px-6 bg-[#fff] w-[300px] sm:w-[550px] pb-6 self-center justify-self-center"></div>
+<div class="edit-profile hidden w-full h-full bg-[#0000005d] fixed top-0 overflow-scroll">
+  <div class="tab grid py-4 px-6 bg-[#fff] w-[395px] sm:w-[600px] pb-6 self-center justify-self-center">
+    <div class="text-right text-lg p-2 cursor-pointer close">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+    <div class="heading text-xl mt-[-15px]">Public Profile</div>
+    <div class="self-center justify-self-center my-6">
+      <div class="my-6 personal-info flex sm:h-10 gap-2 h-8 items-center">
+        <span class="block w-[90px] sm:w-[125px]">Username:</span>
+        <span class="info-input">
+          <input type="text" name="username" id="" class="w-[200px] sm:w-auto h-7 sm:h-10" value="{{ user.username }}">
+        </span>
+      </div>
+      <div class="mt-10 mb-4 personal-info flex h-8 sm:h-10 gap-2 items-center">
+        <span class="block w-[90px] sm:w-[125px]">Email:</span>
+        <span class="info-input">
+          <input type="email" name="email" id="" class="w-[200px] sm:w-auto h-7 sm:h-10" value="{{ user.email }}">
+        </span>
+      </div>
+      <div class="mb-10 mt-2 personal-info flex h-8 sm:h-10 gap-2 items-center">
+        <span class="block w-[90px] sm:w-[125px]">Display email:</span>
+        <span class="info-input">
+          <input type="checkbox" name="display-email" id="">
+        </span>
+      </div>
+      <div class="mt-10 mb-4 personal-info flex h-8 sm:h-10 gap-2 items-center">
+        <span class="block w-[90px] sm:w-[125px]">Bio:</span>
+        <span class="info-input">
+          <input type="text" name="bio" id="" class="w-[200px] sm:w-auto h-7 sm:h-10" value="{{ profile.bio }}">
+        </span>
+      </div>
+      <div class="mb-10 mt-2 personal-info flex h-8 sm:h-10 gap-2 items-center">
+        <span class="block w-[90px] sm:w-[125px]">Display bio:</span>
+        <span class="info-input">
+          <input type="checkbox" name="display-bio" id="">
+        </span>
+      </div>
+      {% if profile is None %}
+      <div class="mt-10 mb-6 personal-info flex h-8 sm:h-10 items-center">
+        <span class="block w-[90px] sm:w-[125px]">Profile photo:</span>
+        <span class="info-input flex items-center gap-4">
+          <img class="profile-photo rounded-full w-[40px] h-[40px] object-cover"
+            src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}" alt="">
+          <span class="text-[#0096FF] text-xl underline cursor-pointer leading-10" onclick="file()">Change photo</span>
+        </span>
+      </div>
+      {% else %}
+      <div class="mt-10 mb-6 personal-info flex h-8 sm:h-10 items-center">
+        <span class="block w-[90px] sm:w-[125px]">Profile photo:</span>
+        <span class="info-input flex items-center gap-4">
+          <img class="profile-photo rounded-full w-[40px] h-[40px] object-cover" src="{{ profile.profile_pics }}"
+            alt="">
+          <span class="text-[#0096FF] text-lg cursor-pointer underline" onclick="file()">Change photo</span>
+        </span>
+      </div>
+      {% endif %}
+      <input type="file" name="profile_pics" id="" hidden>
+    </div>
+    <span id="error" class="text-red-500 text-base font-light"></span>
+    <div class="justify-self-end mr-4" id="profile">
+      <button class="edit-btn bg-[#0096FF] text-white text-xl font-normal w-[100px] h-[45px]"
+        type="submit">Submit</button>
+    </div>
+  </div>
 </div>
-
-<section id="profile">
-  <form action="" id="profile">
-    <input type="text" name="bio">
-    <input type="file" name="profile_pics" id="">
-    <button type="submit" id="profiel-btn">send</button>
-  </form>
-</section>
 {% endblock %}
