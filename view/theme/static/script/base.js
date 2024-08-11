@@ -382,7 +382,7 @@ $('.profile-avater').on('click', '.edit-profile-btn span', function () {
   $('.edit-profile').css('display', 'grid')
 })
 $('.tab').on('click', '.close', function (e) {
-  $('.edit-profile .tab').css('transform', 'scale(0.7)')
+  $('.edit-profile .tab').css('opacity', 1)
   setTimeout(() => {
     $('.edit-profile').css('display', 'none')
   }, 180)

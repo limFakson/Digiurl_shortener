@@ -3,11 +3,11 @@ venv/
 .env
 
 #image file
-*.png
-*.jpg
-*.jpeg
-*.svg
-*.webp
+# *.png
+# *.jpg
+# *.jpeg
+# *.svg
+# *.webp
 
 #zip files
 *.gz

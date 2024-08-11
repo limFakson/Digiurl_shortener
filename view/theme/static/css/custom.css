@@ -217,3 +217,13 @@
         transform: scale(1);
     }
 }
+
+.toper .box:hover {
+    background-color: #f4f2f1;
+    border-color: rgb(43, 46, 59);
+}
+
+.toper .box:hover span {
+    color: rgb(43, 46, 59);
+    font-weight: 500;
+}

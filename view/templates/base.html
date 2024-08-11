@@ -8,7 +8,8 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <!-- CSRF token meta tag -->
       <meta name="csrf-token" content='{% csrf_token %}'>
-      <title>Document</title>
+      <title>Digicore</title>
+      <link rel="shortcut icon" href="{% static 'image/Asset 4figma2.png' %}" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
@@ -22,12 +23,14 @@
 
 <body class="bg-[#F4F2F1]">
       <header class="w-full">
-            <nav class="max-sm:p-6 pb-6 px-14 pt-9 flex justify-between sm:items-end items-center">
-                  <div class="flex lg:w-[23rem] sm:w-[20rem] w-[11.5rem] justify-between items-end">
-                        <h1
+            <nav class="max-sm:p-6 pb-6 px-14 pt-9 flex justify-between items-center">
+                  <div class="flex pl-16 lg:w-[23rem] sm:w-[20rem] w-[11.5rem] justify-between items-center">
+                        <!-- <h1
                               class="logo cursor-pointer text-2xl font-medium sm:font-semibold max-sm:text-lg text-[#0f0f0f]">
-                              Rendor Url Shortener
-                        </h1>
+                              Digicore Url Shortener
+                        </h1> -->
+                        <img src="{% static 'image/Artboard 17NEW Fakson smaller.png' %}"
+                              class="logo cursor-pointer w-[180px]" alt="">
                         <ul class="gap-x-2 font-normal text-lg max-sm:hidden text-[#0f0f0f]">
                               <li class="inline-block"><a href="https://github.com/limFakson">Github</a></li>
                               <li class="inline-block"></li>

@@ -1,8 +1,8 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <section class="urlbox flex flex-col gap-2 justify-center items-center max-sm:px-6">
   <div class="w-full h-[100px] text-center grid mt-14 mb-8 px-4 sm:px-8">
     <h2 class="self-center text-2xl sm:text-4xl font-light">
-      Rendor url shortener your link shortener
+      Digicore url shortener your link shortener
     </h2>
   </div>
   <div class="bar">
@@ -23,7 +23,7 @@
 <section class="features">
   <div class="space h-[100px]"></div>
   <div class="text-center text-3xl sm:text-4xl font-light py-8">
-    <h3>Rendor edge features</h3>
+    <h3>Digicore edge features</h3>
   </div>
   <div class="box flex flex-wrap justify-center items-center">
     <div class="feature feature-1">
@@ -85,5 +85,14 @@
   </div>
 </section>
 <div class="space h-[50px]"></div>
-<div class="toper p-[50px]"></div>
+<div class="toper p-[50px] grid">
+  <div class="box justify-self-center border-2 border-solid border-[#fff] px-8 py-3">
+    <a href="https://buymeacoffee.com/limfakson" class="w-full flex gap-2 items-center">
+      <img
+        src="{% static 'image/Buy_Me_a_Coffee_Logo_PNG_Vector__AI___PDF___SVG__Free_Download-removebg-preview.png' %}"
+        alt="" class="w-[30px] h-auto">
+      <span class="text-white">Buy me a coffee</span>
+    </a>
+  </div>
+</div>
 {% endblock %}
