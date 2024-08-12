@@ -86,6 +86,7 @@ def profile(request):
         except:
             profile = None
         url = ShortenUrl.objects.filter(author=user.id)
+        url = sorted(url, key=lambda x:x.created_at, reverse=True)
         
         return render(request, 'Page/profile.html', {"user":user, "url":url, "profile":profile})
     else:
