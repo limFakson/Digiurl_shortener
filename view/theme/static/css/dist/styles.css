@@ -1009,8 +1009,8 @@ select {
   width: 11.5rem;
 }
 
-.w-\[110px\] {
-  width: 110px;
+.w-\[120px\] {
+  width: 120px;
 }
 
 .w-\[200px\] {
@@ -1083,10 +1083,6 @@ select {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[120px\] {
-  width: 120px;
 }
 
 .flex-shrink-0 {
@@ -1433,6 +1429,10 @@ select {
 
 .pt-2 {
   padding-top: 0.5rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
 }
 
 .pt-4 {

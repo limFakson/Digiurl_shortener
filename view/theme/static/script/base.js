@@ -377,7 +377,11 @@ $(document).ready(function () {
 
 $('.profile-avater').on('click', '.edit-profile-btn span', function () {
   $('#error').text('')
-  $('.edit-profile').css('display', 'grid')
+  // $('.edit-profile').css('display', 'grid')
+  $('.profile-avater .error').text('This feature is not available yet')
+  setTimeout(() => {
+    $('.profile-avater .error').text('')
+  }, 1000)
 })
 $('.tab').on('click', '.close', function (e) {
   $('.edit-profile .tab').css('opacity', 1)

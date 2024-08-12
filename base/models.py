@@ -10,6 +10,7 @@ class ShortenUrl(models.Model):
     author = models.ForeignKey(User, related_name='url', on_delete=models.CASCADE, null=True)
     longurl = models.URLField()
     shorturl = models.URLField()
+    title = models.CharField(max_length=800, default="Digicore shortened url")
     tags = models.CharField(max_length=500, null=True, default=None)
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateField(auto_now=True)

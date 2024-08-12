@@ -17,7 +17,8 @@ class UrlSerializer(serializers.ModelSerializer):
         fields = [
             'author',
             'longurl',
-            'shorturl'
+            'shorturl',
+            'title'
         ]
 
 class ProfileSerializer(serializers.ModelSerializer):

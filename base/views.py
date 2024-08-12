@@ -17,7 +17,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-from .functions import hashing
+from .functions import hashing, scraper
 from .models import ShortenUrl, Profile
 from django.contrib.auth.models import User
 from .serializer import UrlSerializer, UserSerializer, ProfileSerializer
@@ -42,7 +42,7 @@ def convert_url(request):
 
         if not longurl:
             return Response({"message": "Need to pass URL"}, status=400)
-
+        
            
             
         existing_url = ShortenUrl.objects.filter(longurl=longurl).first()
@@ -53,15 +53,19 @@ def convert_url(request):
             return Response(serializer.data, status=200)
 
 
+        #scrap the title og the url shortened
+        url_title = scraper(longurl);
+        
         # If URL is not found, create a new shortened URL
-        cleaned_url = longurl.replace('?', '').replace('=', '').replace('_', '').replace('-', '')
+        cleaned_url = longurl.replace('?', '').replace('=', '').replace('_', '').replace('-', '').replace('+','')
         url_parts = cleaned_url.split('/')
         url_key = url_parts[-1] + user.username if url_parts and user.is_authenticated else url_parts[-1]
         short = hashing(url_key)
-        short_url = config("WEBSITE_URL") + '/' + short
+        short_url = config("WEBSITE_URL")+short
         data = {
             "longurl": longurl,
             "shorturl": short_url,
+            "title": url_title,
             "author": user.id if user.is_authenticated else None
         }
         
