@@ -167,6 +167,8 @@ $(document).on('click', '#login-submit-btn', function (e) {
       console.log(response.responseJSON)
       if (response.responseJSON.message) {
         $('#error').text(response.responseJSON.message).css('color', 'red')
+      }else if (response.responseJSON.error) {
+        $('#error').text(response.responseJSON.error).css('color', 'red')
       }
     }
   })
@@ -240,10 +242,6 @@ $(document).on('change', 'input[name="profile_pics"]', function (e) {
 })
 
 $('#profile').on('click', '.edit-btn', function (event) {
-  // event.preventDefault()
-
-  console.log('submit')
-
   var bio = $('input[name="bio"]').val()
   var formData = new FormData()
   var profilePics = $('input[name="profile_pics"]')[0].files[0]
@@ -270,9 +268,9 @@ $('#profile').on('click', '.edit-btn', function (event) {
       if (response.responseJSON.message) {
         $(this).disabled
         $('#error').text(response.responseJSON.message)
-      } else if (response.responseJSON.password) {
+      } else if (response.responseJSON.error) {
         $(this).disabled
-        $('#error').text(response.responseJSON.password)
+        $('#error').text(response.responseJSON.error)
       }
     }
   })
