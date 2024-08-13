@@ -41,7 +41,7 @@ def convert_url(request):
 
 
         if not longurl:
-            return Response({"message": "Need to pass URL"}, status=400)
+            return Response({"message": "Need to pass URL 😐"}, status=400)
         
            
             

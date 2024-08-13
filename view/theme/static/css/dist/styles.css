@@ -783,6 +783,18 @@ select {
   }
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .static {
   position: static;
 }
@@ -1085,8 +1097,22 @@ select {
   width: 100%;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
 
 .cursor-pointer {
@@ -1287,6 +1313,14 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.fill-blue-600 {
+  fill: #2563eb;
+}
+
+.fill-\[\#f4f2f1\] {
+  fill: #f4f2f1;
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -1429,10 +1463,6 @@ select {
 
 .pt-2 {
   padding-top: 0.5rem;
-}
-
-.pt-3 {
-  padding-top: 0.75rem;
 }
 
 .pt-4 {
@@ -1587,6 +1617,11 @@ select {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-200 {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1870,5 +1905,12 @@ select {
 
   .lg\:pr-6 {
     padding-right: 1.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark\:text-gray-600 {
+    --tw-text-opacity: 1;
+    color: rgb(75 85 99 / var(--tw-text-opacity));
   }
 }
