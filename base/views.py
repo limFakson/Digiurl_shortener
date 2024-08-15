@@ -83,7 +83,7 @@ def convert_url(request):
 
 
 @api_view(["PUT", "GET", "DELETE"])
-def action_on_url(request):
+def action_url(request):
     return
 
 
