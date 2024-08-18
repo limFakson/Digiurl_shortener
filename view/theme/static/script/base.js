@@ -399,15 +399,13 @@ $(document).ready(function () {
   })
 })
 
-$('.options').on('clcik', '#edit', function(e){
+$('.options').on('clcik', '#edit', function (e) {
   $('.link-edit').show()
 })
 
-$('.options').on('clcik', '#delete', function(e){
-  alert.
-})
-
-
+// $('.options').on('clcik', '#delete', function(e){
+//   alert.
+// })
 
 // $(document).on('click', function () {
 //   hideAllDropdowns()
