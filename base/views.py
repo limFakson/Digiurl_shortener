@@ -77,14 +77,44 @@ def convert_url(request):
             serializer.save()
             return Response(serializer.data, status=201)
 
-        return Response(serializer.errors, status=400)
+    elif request.method == "GET":
+        link = ShortenUrl.objects.all()
+        serializer = UrlSerializer(link, many=True)
+        return Response(serializer.data, 200)
 
-    return Response()
+    return Response(serializer.errors, 400)
 
 
 @api_view(["PUT", "GET", "DELETE"])
-def action_url(request):
-    return
+def action_url(request, urlId):
+
+    # get the user sending the request
+    user = request.user
+
+    # gets the link of the url id passed
+    try:
+        link = ShortenUrl.objects.get(id=urlId)
+    except:
+        return Response({"error": "Link not found"}, 404)
+
+    if user.is_authenticated:
+        if link.author != user:
+            return Response({"error": "Not authorized to edit this link"}, 401)
+
+    if request.method == "GET":
+        serializer = UrlSerializer(link)
+        return Response(serializer.data, 200)
+    elif request.method == "PUT":
+        data = request.data
+        serializer = UrlSerializer(link, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, 201)
+    elif request.method == "DELETE":
+        link.delete()
+        return Response({"message": "Link successfully deleted"}, 200)
+
+    return Response(serializer.errors, 400)
 
 
 # Registration Authetication view

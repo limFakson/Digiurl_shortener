@@ -2,22 +2,31 @@
 <section class="flex flex-col">
   <div class="space h-[20px]"></div>
   <div class="dashboard m-6 relative">
-    <div class="user-profile w-[35%] lg:w-[25%] float-left relative max-sm:px-0 px-6 md:p-0 lg:pl-4">
+    <div
+      class="user-profile w-[35%] lg:w-[25%] float-left relative max-sm:px-0 px-6 md:p-0 lg:pl-4"
+    >
       <div class="profile-avater">
         {% if profile is None %}
         <div class="avater">
-          <img src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}" alt="prof-pics"
-            class="rounded-md w-full h-full object-top object-cover">
+          <img
+            src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}"
+            alt="prof-pics"
+            class="rounded-md w-full h-full object-top object-cover"
+          />
         </div>
         {% else %}
         <div class="avater">
-          <img src="{{ profile.profile_pics }}" alt="prof-pics"
-            class="rounded-md w-full h-full object-top object-cover">
+          <img
+            src="{{ profile.profile_pics }}"
+            alt="prof-pics"
+            class="rounded-md w-full h-full object-top object-cover"
+          />
         </div>
         {% endif %}
         <div class="edit-profile-btn mt-5">
           <span
-            class="text-center cursor-pointer align-middle border-[#2B2E3B] border border-solid w-full inline-block bg-[#f4f2f1] py-[6px] px-3">
+            class="text-center cursor-pointer align-middle border-[#2B2E3B] border border-solid w-full inline-block bg-[#f4f2f1] py-[6px] px-3"
+          >
             Edit profile
           </span>
         </div>
@@ -37,33 +46,47 @@
         {% endif %}
       </div>
     </div>
-    <div class="link-int float-left relative sm:px-4 w-[65%] lg:w-[75%] max-md:mt-9 mt-6">
+    <div
+      class="link-int float-left relative sm:px-4 w-[65%] lg:w-[75%] max-md:mt-9 mt-6"
+    >
       <span class="sm:px-4 md:pl-8 font-medium md:text-2xl text-xl">
         Your Links
       </span>
       <div class="activity w-full sm:px-4 md:pl-8 md:mr-[-10px] mt-4">
         {% for link in url %}
-        <div class="link-card my-4 bg-white relative w-full px-4 sm:px-8 py-5 border border-[#2b2e3b3d] border-solid"
-          data-link="{{ link.shorturl }}">
-          <div class="link-box w-full relative flex flex-wrap flex-col sm:flex-row gap-1">
-            <div class="link-information sm:w-[55%] lg:w-[62%] md:w-[90%] w-full flex flex-row gap-6">
+        <div
+          class="link-card my-4 bg-white relative w-full px-4 sm:px-8 py-5 border border-[#2b2e3b3d] border-solid"
+          data-link="{{ link.shorturl }}"
+          data-id="{{ link.id }}"
+        >
+          <div
+            class="link-box w-full relative flex flex-wrap flex-col sm:flex-row gap-1"
+          >
+            <div
+              class="link-information sm:w-[55%] lg:w-[62%] md:w-[90%] w-full flex flex-row gap-6"
+            >
               <span class="orb pt-1">
-                <input type="checkbox" name="orb" id="orb">
+                <input type="checkbox" name="orb" id="orb" />
               </span>
               <div class="link-info-container w-[85%]">
-                <h3 class="font-normal text-lg pb-[3px]">
-                  {{ link.title }}
-                </h3>
+                <h3 class="font-normal text-lg pb-[3px]">{{ link.title }}</h3>
                 <div class="links flex flex-col justify-between">
                   <div class="links-container">
                     <span>
-                      <a href="{{ link.shorturl }}" id="short" target="_blank"
-                        class="short-url py-[4px] text-xs sm:text-sm font-light text-[#0096ff]">
+                      <a
+                        href="{{ link.shorturl }}"
+                        id="short"
+                        target="_blank"
+                        class="short-url py-[4px] text-xs sm:text-sm font-light text-[#0096ff]"
+                      >
                         {{ link.shorturl }}
                       </a>
                       <p class="card-alert"></p>
                     </span>
-                    <a href="{{ link.longurl }}" class="long-url block py-[4px] text-sm sm:text-base font-light">
+                    <a
+                      href="{{ link.longurl }}"
+                      class="long-url block py-[4px] text-sm sm:text-base font-light"
+                    >
                       {{ link.longurl }}
                     </a>
                   </div>
@@ -78,27 +101,32 @@
             </div>
             <!-- <hr class="w-[3%]"> -->
             <div
-              class="link-button pr-2 max-sm:mt-6 sm:w-[43%] lg:w-[35%] md:w-[100%] relative flex flex-row gap-3 items-start justify-end">
+              class="link-button pr-2 max-sm:mt-6 sm:w-[43%] lg:w-[35%] md:w-[100%] relative flex flex-row gap-3 items-start justify-end"
+            >
               <div
-                class="card-copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer">
+                class="card-copy-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
+              >
                 <i class="fa-solid fa-copy pr-[2px]"></i>
                 copy
               </div>
               <div
                 class="share-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
-                id="share">
+                id="share"
+              >
                 <i class="fa-solid fa-share-nodes"></i>
                 share
               </div>
               <div
-                class="option-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer">
+                class="option-btn border-[1px] border-[#2b2e3b48] px-3 py-1 border-solid text-base font-normal cursor-pointer"
+              >
                 <i class="fa-solid fa-ellipsis-vertical"></i>
               </div>
               <div class="options absolute bg-[#F4F2F1] top-9 w-auto">
                 <ul class="w-[7rem] py-2">
-                  <li>Edit</li>
-                  <li>Delete</li>
-                  <li>Help</li>
+                  <li id="edit">Edit</li>
+                  <li id="deleet">Delete</li>
+                  <li id="help">Help</li>
+                  <input type="hidden" name="link-id" />
                 </ul>
               </div>
             </div>
@@ -110,25 +138,42 @@
   </div>
 </section>
 <div class="share-tab hidden h-full top-0 fixed w-full bg-[#0000005d]">
-  <div class="tab py-4 px-4 sm:px-6 bg-[#fff] w-[370px] sm:w-[550px] pb-8 self-center justify-self-center">
+  <div
+    class="tab py-4 px-4 sm:px-6 bg-[#fff] w-[370px] sm:w-[550px] pb-8 self-center justify-self-center"
+  >
     <div class="text-right text-lg cursor-pointer close">
       <i class="fa-solid fa-xmark"></i>
     </div>
-    <div class="mt-[-15px] text-lg sm:text-2xl font-semibold">Share your rendor link</div>
+    <div class="mt-[-15px] text-lg sm:text-2xl font-semibold">
+      Share your rendor link
+    </div>
     <div class="share-apps flex items-center justify-center my-8 sm:m-8">
       <div class="swipper gap-3 flex">
         <div class="icons flex flex-col items-center flex-shrink-0 h-full">
           <span class="inline-block object-fill border border-solid">
-            <a id="social-link"
+            <a
+              id="social-link"
               href="https://wa.me/?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
-              data-action="share/whatsapp/share" aria-label="Share via WhatsApp" title="Share via WhatsApp"
-              target="_blank">
-              <svg viewBox="0 0 16 16" height="28" width="28" fill="none" xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true">
+              data-action="share/whatsapp/share"
+              aria-label="Share via WhatsApp"
+              title="Share via WhatsApp"
+              target="_blank"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                height="28"
+                width="28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
                 <title>WhatsApp</title>
-                <path fill-rule="evenodd" clip-rule="evenodd"
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
                   d="M13.6031 2.32521C12.1064 0.826229 10.116 0.000884613 7.99513 0C3.6247 0 0.0681152 3.55615 0.066346 7.9279C0.0654614 9.32515 0.430807 10.6892 1.12479 11.8914L0 16L4.2028 14.8978C5.36076 15.5298 6.66468 15.862 7.9916 15.8624H7.99513C12.3647 15.8624 15.9217 12.3059 15.923 7.93454C15.9239 5.81589 15.0999 3.82418 13.6031 2.32565V2.32521ZM7.99513 14.5231H7.99248C6.8102 14.5231 5.65047 14.2051 4.63847 13.6045L4.39786 13.4616L1.90369 14.1158L2.56936 11.684L2.41278 11.4345C1.7533 10.3854 1.40477 9.17255 1.40521 7.92746C1.40654 4.29435 4.36291 1.33842 7.99779 1.33842C9.75773 1.3393 11.4124 2.02532 12.6566 3.2713C13.9008 4.51684 14.5855 6.17283 14.5846 7.93321C14.5829 11.5668 11.6269 14.5227 7.99513 14.5227V14.5231ZM11.6097 9.58832C11.4115 9.48925 10.4376 9.01023 10.2558 8.94388C10.074 8.87754 9.94217 8.84481 9.81036 9.04296C9.67855 9.24155 9.29861 9.68784 9.18317 9.81965C9.06773 9.9519 8.95184 9.96826 8.75413 9.86919C8.55598 9.77011 7.91773 9.5609 7.16094 8.88594C6.57223 8.36048 6.1746 7.71206 6.05872 7.51346C5.94327 7.31487 6.04633 7.20783 6.14541 7.10919C6.23431 7.02029 6.34356 6.87787 6.44264 6.76198C6.54172 6.64654 6.57445 6.56339 6.64079 6.43158C6.70714 6.29933 6.67397 6.18389 6.62443 6.08437C6.57489 5.98529 6.17902 5.01001 6.0136 4.6137C5.8526 4.22757 5.68939 4.27976 5.5682 4.27357C5.45276 4.26782 5.32051 4.26693 5.18826 4.26693C5.05601 4.26693 4.84149 4.31647 4.6597 4.51462C4.47791 4.71322 3.96616 5.19224 3.96616 6.16708C3.96616 7.14192 4.67607 8.08404 4.77514 8.21673C4.87422 8.34898 6.17239 10.35 8.15923 11.208C8.63161 11.4124 9.00094 11.534 9.28888 11.6256C9.76348 11.7764 10.1952 11.7552 10.5366 11.7043C10.917 11.6473 11.7087 11.2249 11.8737 10.7622C12.0387 10.2996 12.0387 9.9028 11.9892 9.82009C11.9396 9.73738 11.8074 9.68784 11.6092 9.58877V9.58788L11.6097 9.58832Z"
-                  fill="#25D366"></path>
+                  fill="#25D366"
+                ></path>
               </svg>
             </a>
           </span>
@@ -136,13 +181,24 @@
         </div>
         <div class="icons flex flex-col items-center flex-shrink-0 h-full">
           <span class="inline-block object-fill border border-solid">
-            <a href="https://www.facebook.com/sharer/sharer.php?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
-              data-action="share/whatsapp/share" target="_blank" id="social-link">
-              <svg viewBox="0 0 48 48" height="28" width="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
+              data-action="share/whatsapp/share"
+              target="_blank"
+              id="social-link"
+            >
+              <svg
+                viewBox="0 0 48 48"
+                height="28"
+                width="28"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
                 <title>Facebook</title>
                 <path
                   d="M48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 35.9789 8.77641 45.908 20.25 47.7084V30.9375H14.1562V24H20.25V18.7125C20.25 12.6975 23.8331 9.375 29.3152 9.375C31.9402 9.375 34.6875 9.84375 34.6875 9.84375V15.75H31.6613C28.68 15.75 27.75 17.6002 27.75 19.5V24H34.4062L33.3422 30.9375H27.75V47.7084C39.2236 45.908 48 35.9789 48 24Z"
-                  fill="#1877F2"></path>
+                  fill="#1877F2"
+                ></path>
               </svg>
             </a>
           </span>
@@ -150,14 +206,25 @@
         </div>
         <div class="icons flex flex-col items-center flex-shrink-0 h-full">
           <span class="inline-block object-fill border border-solid">
-            <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
-              data-action="share/facebook/share" target="_blank" id="social-link">
-              <svg viewBox="0 0 48 48" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true">
+            <a
+              href="https://twitter.com/intent/tweet?text=Check%20out%20this%20link%20shortened%20with%20digi%20url%20shortener%0D%0A"
+              data-action="share/facebook/share"
+              target="_blank"
+              id="social-link"
+            >
+              <svg
+                viewBox="0 0 48 48"
+                width="28"
+                height="28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
                 <title>X (Formerly Twitter)</title>
                 <path
                   d="M9.21598 10.0952L20.6877 25.4337L9.14368 37.9047H11.742L21.849 26.9859L30.0148 37.9047H38.8563L26.7389 21.7035L37.4841 10.0952H34.8858L25.5781 20.1509L18.0575 10.0952H9.21598ZM13.0369 12.0089H17.0986L35.0349 35.991H30.9732L13.0369 12.0089Z"
-                  fill="#000000"></path>
+                  fill="#000000"
+                ></path>
               </svg>
             </a>
           </span>
@@ -166,7 +233,13 @@
       </div>
     </div>
     <div class="copy-input flex w-full border-2 border-[#f4f2f1] border-solid">
-      <input type="text" name="copy-input[]" id="" class="w-[75%] sm:w-[83%] text-sm sm:text-base h-full" disabled>
+      <input
+        type="text"
+        name="copy-input[]"
+        id=""
+        class="w-[75%] sm:w-[83%] text-sm sm:text-base h-full"
+        disabled
+      />
       <button type="button" class="w-[25%] sm:w-[20%] pl-2 bg-[#f4f2f1]">
         <i class="fa-solid fa-copy pr-2"></i>
         Copy
@@ -175,8 +248,12 @@
   </div>
 </div>
 
-<div class="edit-profile hidden w-full h-full bg-[#0000005d] fixed top-0 overflow-scroll">
-  <div class="tab grid py-4 px-6 bg-[#fff] w-[395px] sm:w-[600px] pb-6 self-center justify-self-center">
+<div
+  class="edit-profile hidden w-full h-full bg-[#0000005d] fixed top-0 overflow-scroll"
+>
+  <div
+    class="tab grid py-4 px-6 bg-[#fff] w-[395px] sm:w-[600px] pb-6 self-center justify-self-center"
+  >
     <div class="text-right text-lg p-2 cursor-pointer close">
       <i class="fa-solid fa-xmark"></i>
     </div>
@@ -185,58 +262,94 @@
       <div class="my-6 personal-info flex sm:h-10 gap-2 h-8 items-center">
         <span class="block w-[90px] sm:w-[125px]">Username:</span>
         <span class="info-input">
-          <input type="text" name="username" id="" class="w-[200px] sm:w-auto h-7 sm:h-10" value="{{ user.username }}">
+          <input
+            type="text"
+            name="username"
+            id=""
+            class="w-[200px] sm:w-auto h-7 sm:h-10"
+            value="{{ user.username }}"
+          />
         </span>
       </div>
       <div class="mt-10 mb-4 personal-info flex h-8 sm:h-10 gap-2 items-center">
         <span class="block w-[90px] sm:w-[125px]">Email:</span>
         <span class="info-input">
-          <input type="email" name="email" id="" class="w-[200px] sm:w-auto h-7 sm:h-10" value="{{ user.email }}">
+          <input
+            type="email"
+            name="email"
+            id=""
+            class="w-[200px] sm:w-auto h-7 sm:h-10"
+            value="{{ user.email }}"
+          />
         </span>
       </div>
       <div class="mb-10 mt-2 personal-info flex h-8 sm:h-10 gap-2 items-center">
         <span class="block w-[90px] sm:w-[125px]">Display email:</span>
         <span class="info-input">
-          <input type="checkbox" name="display-email" id="">
+          <input type="checkbox" name="display-email" id="" />
         </span>
       </div>
       <div class="mt-10 mb-4 personal-info flex h-8 sm:h-10 gap-2 items-center">
         <span class="block w-[90px] sm:w-[125px]">Bio:</span>
         <span class="info-input">
-          <input type="text" name="bio" id="" class="w-[200px] sm:w-auto h-7 sm:h-10" value="{{ profile.bio }}">
+          <input
+            type="text"
+            name="bio"
+            id=""
+            class="w-[200px] sm:w-auto h-7 sm:h-10"
+            value="{{ profile.bio }}"
+          />
         </span>
       </div>
       <div class="mb-10 mt-2 personal-info flex h-8 sm:h-10 gap-2 items-center">
         <span class="block w-[90px] sm:w-[125px]">Display bio:</span>
         <span class="info-input">
-          <input type="checkbox" name="display-bio" id="">
+          <input type="checkbox" name="display-bio" id="" />
         </span>
       </div>
       {% if profile is None %}
       <div class="mt-10 mb-6 personal-info flex h-8 sm:h-10 items-center">
         <span class="block w-[90px] sm:w-[125px]">Profile photo:</span>
         <span class="info-input flex items-center gap-4">
-          <img class="profile-photo rounded-full w-[40px] h-[40px] object-cover"
-            src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}" alt="">
-          <span class="text-[#0096FF] text-xl underline cursor-pointer leading-10" onclick="file()">Change photo</span>
+          <img
+            class="profile-photo rounded-full w-[40px] h-[40px] object-cover"
+            src="{% static 'image/Solo-Leveling-Sung-jin-woo.jpg' %}"
+            alt=""
+          />
+          <span
+            class="text-[#0096FF] text-xl underline cursor-pointer leading-10"
+            onclick="file()"
+            >Change photo</span
+          >
         </span>
       </div>
       {% else %}
       <div class="mt-10 mb-6 personal-info flex h-8 sm:h-10 items-center">
         <span class="block w-[90px] sm:w-[125px]">Profile photo:</span>
         <span class="info-input flex items-center gap-4">
-          <img class="profile-photo rounded-full w-[40px] h-[40px] object-cover" src="{{ profile.profile_pics }}"
-            alt="">
-          <span class="text-[#0096FF] text-lg cursor-pointer underline" onclick="file()">Change photo</span>
+          <img
+            class="profile-photo rounded-full w-[40px] h-[40px] object-cover"
+            src="{{ profile.profile_pics }}"
+            alt=""
+          />
+          <span
+            class="text-[#0096FF] text-lg cursor-pointer underline"
+            onclick="file()"
+            >Change photo</span
+          >
         </span>
       </div>
       {% endif %}
-      <input type="file" name="profile_pics" id="" hidden>
+      <input type="file" name="profile_pics" id="" hidden />
     </div>
     <span id="error" class="text-red-500 text-base font-light"></span>
     <div class="justify-self-end mr-4" id="profile">
-      <button class="edit-btn bg-[#0096FF] text-white text-xl font-normal w-[100px] h-[45px]"
-        type="submit">Submit</button>
+      <button
+        class="edit-btn bg-[#0096FF] text-white text-xl font-normal w-[100px] h-[45px]"
+        type="submit"
+      >
+        Submit
+      </button>
     </div>
   </div>
 </div>

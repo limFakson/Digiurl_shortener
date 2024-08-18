@@ -379,6 +379,8 @@ $(document).ready(function () {
   $(document).on('click', '.option-btn', function (e) {
     e.stopPropagation()
     var options = $(this).parent().find('.options')
+    var linkId = $(this).parent().parent().parent().data('id')
+    $('input[name="link-id"]').val(linkId)
 
     $('.options').not(options).css({transform: 'translateX(50px)', opacity: 0, display: 'none'})
 
@@ -396,6 +398,16 @@ $(document).ready(function () {
     }
   })
 })
+
+$('.options').on('clcik', '#edit', function(e){
+  $('.link-edit').show()
+})
+
+$('.options').on('clcik', '#delete', function(e){
+  alert.
+})
+
+
 
 // $(document).on('click', function () {
 //   hideAllDropdowns()
