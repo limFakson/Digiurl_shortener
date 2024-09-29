@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
@@ -118,7 +118,7 @@ def action_url(request, urlId):
 
 
 # Registration Authetication view
-@csrf_protect
+@csrf_exempt
 @api_view(["POST"])
 def userregistration(request):
     """
@@ -172,7 +172,7 @@ def userregistration(request):
 
 
 # Login Authentication View
-@csrf_protect
+@csrf_exempt
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def userLogin(request):
